@@ -15,7 +15,7 @@
 	</header>
 	<div id="mainPage"> 
 		<div id="mainLeft">
-			<img width="400px" height="200px" src="imagenes/test.png">
+			<img width="400px" height="200px" src="imagenes/portadadnd.png">
 			<p>Si eres diseñador o has trasteado con programas de diseño, probablemente te hayas encontrado con un texto conocido como Lorem Ipsum. ... Su título deriva del latín dolorem ipsum, que significa «el dolor en sí».</p>
 		</div>
 		<div id="mainRight">
