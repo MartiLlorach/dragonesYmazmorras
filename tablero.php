@@ -8,12 +8,18 @@
 	<title>Dashboard</title>
 </head>
 <body onload="mostrarMenuUsuario()">
+
 	<header>
 	 <div id="header">
 	 	<h1>D&D Generador de Fichas</h1>
 	 	<div id="separacionHeader"></div>
 		<div id="seccionUsuario">
-	 	<button class="headerButton" onclick="mostrarMenuUsuario()">Usuario</button>
+		<?php 
+			echo "<button class='headerButton' onclick='mostrarMenuUsuario()'>";
+			$usuario=$_GET['usuario'];
+			echo "$usuario";
+			echo "</button>";
+		?>
 		      <div id="menuUsuario" position="absolute">
 			      <p><a href="#"> Listado de fichas</a></p>
 			      <p><a href="#"> Crear ficha</a></p>
