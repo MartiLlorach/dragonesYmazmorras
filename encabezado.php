@@ -12,7 +12,7 @@
     </div>
     <div class="botonesEncabezado">
       <?php
-        if ($_SESSION['usuario']){
+        if (isset($_SESSION['usuario'])){
       ?>
       <button type='button' class='boton botonUsuario' id='botonUsuario'>
         <?php echo $_SESSION['usuario']; ?> &nbsp<i class='fa fa-user'></i>

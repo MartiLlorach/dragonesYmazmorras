@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 function login($usuario, $contrasena, $oBbdd){
 
   $contrasena = hash('sha256', $contrasena);
