@@ -3,7 +3,10 @@ $( () => {
     cambiarDespleglable();
   });
   $('#botonCasa').click( () => {
-    $(location).prop('href', 'index.php')
+    $(location).prop('href', 'tablero.php');
+  });
+  $('#cierraSesion').click( () => {
+    $(location).prop('href', 'logout.php');
   });
 })
 

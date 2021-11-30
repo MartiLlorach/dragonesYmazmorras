@@ -1,5 +1,7 @@
 /* PALETA DE COLORES */
 
+@import url('https://fonts.googleapis.com/css2?family=Eczar:wght@400;500;600;700;800&family=Open+Sans&display=swap');
+
 :root {
 	--color1: #CD5200;
 	--color2: #DF0000;
@@ -13,10 +15,13 @@
 /* ESTILOS GENERALES */
 
 body {
+	background-image: url("imagenes/fondoLava.jpg");
+	background-size: cover;
 	background-color: var(--color6);
+	font-family: 'Open Sans', sans-serif;
 }
 
-button:hover {
+button:hover, input[type=submit]:hover{
 	background-color: #ddd;
 	color: var(--color2);
 }
@@ -28,6 +33,7 @@ button:hover {
 /* ESTILOS ENCABEZADO */
 
 .titulo{
+	font-family: 'Eczar', serif;
 	color: var(--color2);
 	text-shadow: 2px 0 0 var(--color6),
 		-2px 0 0 var(--color6),
@@ -37,6 +43,7 @@ button:hover {
 		-1px -1px 0 var(--color6),
 		1px -1px 0 var(--color6),
 		-1px 1px 0 var(--color6);
+	margin: 10px;
 }
 
 #encabezado {
@@ -118,13 +125,21 @@ button:hover {
 	border-radius: 5px;
 }
 
+#paginaInicioIzq img {
+	width: 400px;
+}
+
 #paginaInicioDer {
 	width: fit-content;
-	display: flex;
 	justify-content: center;
-	align-items: center;
+	text-align: center;
 	background-color: var(--color4);
 	border-radius: 5px;
+}
+
+#paginaInicioDer .errorMsg {
+	color: var(--color2);
+	display: block;
 }
 
 #formularioLogin {
@@ -142,9 +157,14 @@ button:hover {
 	margin: 10px;
 }
 
+input[type=submit] {
+	font-size: 20px;
+}
+
 #formularioLogin button {
 	font-size: 20px;
 	margin: 10px;
+	align-items: center;
 }
 
 /* ESTILOS TABLERO */

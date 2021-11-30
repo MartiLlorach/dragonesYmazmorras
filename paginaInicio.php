@@ -7,18 +7,28 @@
 <?php include 'encabezado.php'; ?>
 	<div id="paginaInicio">
 		<div id="paginaInicioIzq">
-			<img width="400px" height="200px" src="imagenes/portadadnd.png">
-			<p>Si eres diseñador o has trasteado con programas de diseño, probablemente te hayas encontrado con un texto conocido como Lorem Ipsum. ... Su título deriva del latín dolorem ipsum, que significa «el dolor en sí».</p>
+			<img src="imagenes/logoDnd.png">
+			<p>
+				Bienvenido al generador de fichas para D&D 5e, en este generador podras generar tus fichas y posteriormente enfrentarlas para ver cómo rendirian en el juego real.
+			</p>
 		</div>
 		<div id="paginaInicioDer">
-			<form id="formularioLogin" autocomplete="off" action="tablero.php" method="post">
+			<form id="formularioLogin" autocomplete="off" method="post">
 				<h2>Iniciar sesión</h2>
-				<input type="text" name="user" placeholder="Usuario" required>
-				<input type="password" name="password" placeholder="Contraseña" required>
+				<input type="text" id="usuario" name="usuario" placeholder="Usuario" maxlength="10" required>
+				<input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" maxlength="10" required>
 				<input type="submit" value="Entrar">
-				<a class="link" onclick="passwordOlvidada()"><u>¿Has olvidado la contraseña?</u></a>
+				<a class="link"><u>¿Has olvidado la contraseña?</u></a>
 				<button>Crear una cuenta nueva</button>
 			</form>
+			<?php
+				include 'bbdd/bbddConexion.php';
+				include 'bbdd/bbddFunciones.php';
+			  if(isset($_POST["usuario"])){
+					login($_POST["usuario"], $_POST["contrasena"], $pdo);
+		    }
+
+		  ?>
 		</div>
 	</div>
 </body>
