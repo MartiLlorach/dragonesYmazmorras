@@ -21,6 +21,10 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 
+h1, h2, h3{
+	font-family: 'Eczar', serif;
+}
+
 button:hover, input[type=submit]:hover{
 	background-color: #ddd;
 	color: var(--color2);
@@ -28,7 +32,8 @@ button:hover, input[type=submit]:hover{
 }
 
 .link {
-	color: blue;
+	color: var(--color1);
+	cursor: pointer;
 }
 
 /* ESTILOS ENCABEZADO */
@@ -51,9 +56,9 @@ button:hover, input[type=submit]:hover{
 	display: flex;
 	background-color: var(--color4);
 	flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: baseline;
+  	flex-wrap: nowrap;
+  	justify-content: space-between;
+  	align-items: baseline;
 	padding: 0 10px;
 	margin-bottom: 20px;
 }
@@ -123,6 +128,7 @@ button:hover, input[type=submit]:hover{
 	flex-direction: column;
 	align-items: center;
 	background-color: var(--color4);
+	box-shadow: 5px 10px 8px var(--color6);
 	border-radius: 5px;
 }
 
@@ -135,6 +141,7 @@ button:hover, input[type=submit]:hover{
 	justify-content: center;
 	text-align: center;
 	background-color: var(--color4);
+	box-shadow: 5px 10px 8px var(--color6);
 	border-radius: 5px;
 }
 
