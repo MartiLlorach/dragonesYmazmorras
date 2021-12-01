@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 29-11-2021 a las 15:53:05
+-- Tiempo de generación: 30-11-2021 a las 10:07:27
 -- Versión del servidor: 8.0.27-0ubuntu0.20.04.1
 -- Versión de PHP: 7.4.3
 
@@ -39,7 +39,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `contrasena`) VALUES
-(1, 'test', 'test');
+(1, 'test', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08');
 
 --
 -- Índices para tablas volcadas
