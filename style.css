@@ -179,7 +179,7 @@ input[type=submit] {
  #menuTablero {
 	 padding: 10px 0;
 	 margin: auto;
-	 width: fit-content;
+	 width: min-content;
 	 background-color: var(--color4);
 	 border-radius: 5px;
  }
