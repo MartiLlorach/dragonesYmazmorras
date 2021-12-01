@@ -20,8 +20,8 @@
 				<input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" maxlength="10" required>
 				<input type="submit" value="Entrar">
 				<a class="link"><u>¿Has olvidado la contraseña?</u></a>
-				<button>Crear una cuenta nueva</button>
 			</form>
+			<button id="crearCuenta">Crear una cuenta nueva</button>
 			<?php
 				include 'bbdd/bbddConexion.php';
 				include 'bbdd/bbddFunciones.php';
