@@ -202,3 +202,17 @@ input[type=submit] {
 	 display: block;
 	 margin: 10px;
  }
+
+/* ESTILOS LISTA FICHAS */
+#listaFichas .resumenFicha{
+	display: flex;
+	width: min-content;
+	margin: 10px auto;
+	background: var(--color4);
+	border-radius: 5px:
+}
+
+#listaFichas .resumenBotones{
+	display: flex;
+	flex-direction: column;
+}
