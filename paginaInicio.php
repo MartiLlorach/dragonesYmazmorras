@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<title>D&D Generador de fichas</title>
+<body>
 <?php include 'encabezado.php'; ?>
 	<div id="paginaInicio">
 		<div id="paginaInicioIzq">
@@ -21,7 +22,12 @@
 				<input type="submit" value="Entrar">
 				<a class="link"><u>¿Has olvidado la contraseña?</u></a>
 			</form>
-			<button id="crearCuenta">Crear una cuenta nueva</button>
+			<button id="crearCuenta" onclick="crearCuenta()">Crear una cuenta nueva</button>
+			<script>
+				function crearCuenta() {
+					window.location="crearCuenta.php";
+				}
+			</script>
 			<?php
 				include 'bbdd/bbddConexion.php';
 				include 'bbdd/bbddFunciones.php';
