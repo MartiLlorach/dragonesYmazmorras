@@ -10,7 +10,7 @@
 		<div id="paginaInicioIzq">
 			<img src="imagenes/logoDnd.png">
 			<p>
-				Bienvenido al generador de fichas para D&D 5e, en este generador podras generar tus fichas y posteriormente enfrentarlas para ver cómo rendirian en el juego real.
+				Bienvenido al generador de fichas para D&D 5e, en este generador podrás generar tus fichas y posteriormente enfrentarlas para ver cómo rendirían en el juego real.
 			</p>
 		</div>
 		<div id="paginaInicioDer">
