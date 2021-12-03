@@ -209,10 +209,32 @@ input[type=submit] {
 	width: min-content;
 	margin: 10px auto;
 	background: var(--color4);
-	border-radius: 5px:
+	border-radius: 5px;
+	align-items: center;
 }
 
 #listaFichas .resumenBotones{
 	display: flex;
 	flex-direction: column;
+}
+
+#listaFichas .resumenFicha button{
+	margin: 2px 5px;
+}
+
+#listaFichas .resumenFicha .verFicha{
+	background-color: green;
+	color: var(--color6);
+}
+#listaFichas .resumenFicha .eliminarFicha{
+	background-color: red;
+	color: var(--color6);
+}
+#listaFichas .resumenFicha .imgRaza{
+	width: auto;
+	height: 50px;
+	margin-left: 10px;
+}
+#listaFichas .resumenFicha p{
+	padding: 10px;
 }

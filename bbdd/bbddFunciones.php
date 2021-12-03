@@ -62,15 +62,33 @@ function conseguirFichas($usuario, $oBbdd){
 }
 
 function printarResumenFicha($nombre, $raza, $clase){
+  $src ="";
+  switch ($raza) {
+    case 'Humano':
+      $src = "https://www.dndbeyond.com/avatars/9/386/636327460764467148.jpeg";
+      break;
+    case 'Semielfo':
+      $src = 'https://www.dndbeyond.com/avatars/9/381/636327459940259125.jpeg';
+      break;
+    case 'Semiorco':
+      $src = 'https://www.dndbeyond.com/avatars/9/385/636327460616726799.jpeg';
+      break;
+    case 'Tiflin':
+      $src = 'https://www.dndbeyond.com/avatars/9/388/636327461109911160.jpeg';
+      break;
+    case 'Alto Elfo':
+      $src = 'https://www.dndbeyond.com/avatars/9/366/636327456833931461.jpeg';
+      break;
+  }
   echo "
   <div class='resumenFicha'>
-    <div class='imgRaza'></div>
+    <img class='imgRaza' src=$src></img>
     <p>$nombre</p>
     <p>$raza</p>
     <p>$clase</p>
     <div class='resumenBotones'>
-      <button class='verFicha'><i class='far fa-eye'></i></button>
-      <button class='eliminarFicha'><i class='fas fa-trash-alt'></i></button>
+      <button class='verFicha'><i class='fa fa-eye'></i></button>
+      <button class='eliminarFicha'><i class='fa fa-trash'></i></button>
     </div>
   </div>
   ";
