@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 4.9.5deb2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 03-12-2021 a las 10:14:12
--- Versión del servidor: 10.4.19-MariaDB
--- Versión de PHP: 7.3.28
+-- Servidor: localhost:3306
+-- Tiempo de generación: 03-12-2021 a las 15:38:43
+-- Versión del servidor: 8.0.27-0ubuntu0.20.04.1
+-- Versión de PHP: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -30,13 +31,13 @@ USE `dragonesymazmorras`;
 --
 
 CREATE TABLE `armadurasyescudos` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `tipo` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `clase_de_armadura` int(11) NOT NULL,
-  `clase_de_armadura_bonus` varchar(10) CHARACTER SET utf8 NOT NULL,
-  `clase_de_armadura_bonus_max` int(11) NOT NULL,
-  `peso` int(11) NOT NULL
+  `id` int NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `tipo` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `clase_de_armadura` int NOT NULL,
+  `clase_de_armadura_bonus` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `clase_de_armadura_bonus_max` int NOT NULL,
+  `peso` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=ascii;
 
 -- --------------------------------------------------------
@@ -46,21 +47,21 @@ CREATE TABLE `armadurasyescudos` (
 --
 
 CREATE TABLE `armas` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `alcance` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `alcance` int NOT NULL,
   `a_dos_manos` tinyint(1) NOT NULL,
   `arrojadiza` tinyint(1) NOT NULL,
   `cargar` tinyint(1) NOT NULL,
-  `distancia` int(11) NOT NULL,
+  `distancia` int NOT NULL,
   `especial` tinyint(1) NOT NULL,
-  `municion` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `municion` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `pesado` tinyint(1) NOT NULL,
-  `peso` int(11) NOT NULL,
+  `peso` int NOT NULL,
   `sutil` tinyint(1) NOT NULL,
   `versatil` tinyint(1) NOT NULL,
-  `daño` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `daño_tipo` varchar(50) CHARACTER SET utf8 NOT NULL
+  `daño` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `daño_tipo` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=ascii;
 
 -- --------------------------------------------------------
@@ -70,12 +71,12 @@ CREATE TABLE `armas` (
 --
 
 CREATE TABLE `clases` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `id` int NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `dado_de_golpe` varchar(50) NOT NULL,
-  `idiomas_elegir` int(11) NOT NULL,
-  `riqueza_inicial` int(11) DEFAULT NULL,
-  `descripcion` varchar(1000) CHARACTER SET utf8 NOT NULL
+  `idiomas_elegir` int NOT NULL,
+  `riqueza_inicial` int DEFAULT NULL,
+  `descripcion` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=ascii;
 
 --
@@ -93,11 +94,11 @@ INSERT INTO `clases` VALUES(6, 'Paladín', 'd10', 0, NULL, 'Independientemente d
 --
 
 CREATE TABLE `competenciasclase` (
-  `id_clase` int(11) NOT NULL,
-  `tipo` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `competencia` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `id_clase` int NOT NULL,
+  `tipo` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `competencia` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `experto` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -106,11 +107,11 @@ CREATE TABLE `competenciasclase` (
 --
 
 CREATE TABLE `competenciaselegirclase` (
-  `id` int(11) NOT NULL,
-  `id_clase` int(11) NOT NULL,
-  `numero` int(11) NOT NULL,
-  `opciones` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL,
+  `id_clase` int NOT NULL,
+  `numero` int NOT NULL,
+  `opciones` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -119,11 +120,11 @@ CREATE TABLE `competenciaselegirclase` (
 --
 
 CREATE TABLE `competenciaselegirraza` (
-  `id` int(11) NOT NULL,
-  `id_raza` int(11) NOT NULL,
-  `numero` int(11) NOT NULL,
-  `opciones` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL,
+  `id_raza` int NOT NULL,
+  `numero` int NOT NULL,
+  `opciones` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -132,11 +133,11 @@ CREATE TABLE `competenciaselegirraza` (
 --
 
 CREATE TABLE `competenciaselegirtrasfondo` (
-  `id` int(11) NOT NULL,
-  `id_trasfondo` int(11) NOT NULL,
-  `numero` int(11) NOT NULL,
-  `opciones` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int NOT NULL,
+  `id_trasfondo` int NOT NULL,
+  `numero` int NOT NULL,
+  `opciones` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -145,9 +146,9 @@ CREATE TABLE `competenciaselegirtrasfondo` (
 --
 
 CREATE TABLE `competenciasopciones` (
-  `id` int(11) NOT NULL,
-  `id_competencia` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL,
+  `id_competencia` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -156,11 +157,11 @@ CREATE TABLE `competenciasopciones` (
 --
 
 CREATE TABLE `competenciaspersonaje` (
-  `id_personaje` int(11) NOT NULL,
-  `tipo` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `competencia` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `id_personaje` int NOT NULL,
+  `tipo` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `competencia` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `experto` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -169,11 +170,11 @@ CREATE TABLE `competenciaspersonaje` (
 --
 
 CREATE TABLE `competenciasraza` (
-  `id_raza` int(11) NOT NULL,
-  `tipo` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `competencia` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `id_raza` int NOT NULL,
+  `tipo` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `competencia` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `experto` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -182,11 +183,11 @@ CREATE TABLE `competenciasraza` (
 --
 
 CREATE TABLE `competenciastrasfondo` (
-  `id_trasfondo` int(11) NOT NULL,
-  `tipo` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `competencia` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `id_trasfondo` int NOT NULL,
+  `tipo` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `competencia` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `experto` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -195,16 +196,16 @@ CREATE TABLE `competenciastrasfondo` (
 --
 
 CREATE TABLE `conjuros` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `nivel` int(11) NOT NULL,
-  `tipo` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `tiempo_de_lanzamiento` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `alcance` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `componentes` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `duracion` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `descripcion` varchar(2000) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `nivel` int NOT NULL,
+  `tipo` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `tiempo_de_lanzamiento` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `alcance` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `componentes` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `duracion` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `descripcion` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -213,9 +214,9 @@ CREATE TABLE `conjuros` (
 --
 
 CREATE TABLE `conjurosclase` (
-  `id_clase` int(11) NOT NULL,
-  `id_conjuro` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_clase` int NOT NULL,
+  `id_conjuro` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -224,10 +225,10 @@ CREATE TABLE `conjurosclase` (
 --
 
 CREATE TABLE `conjurosespacios` (
-  `id_clase` int(11) NOT NULL,
-  `0` int(11) NOT NULL,
-  `1` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_clase` int NOT NULL,
+  `0` int NOT NULL,
+  `1` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -236,10 +237,10 @@ CREATE TABLE `conjurosespacios` (
 --
 
 CREATE TABLE `conjurosmaximos` (
-  `id_clase` int(11) NOT NULL,
-  `0` int(11) NOT NULL,
-  `1` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_clase` int NOT NULL,
+  `0` int NOT NULL,
+  `1` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -248,10 +249,10 @@ CREATE TABLE `conjurosmaximos` (
 --
 
 CREATE TABLE `conjurospersonaje` (
-  `id_personaje` int(11) NOT NULL,
-  `id_conjuro` int(11) NOT NULL,
+  `id_personaje` int NOT NULL,
+  `id_conjuro` int NOT NULL,
   `preparado` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -260,11 +261,11 @@ CREATE TABLE `conjurospersonaje` (
 --
 
 CREATE TABLE `equipamientoclaseelegir` (
-  `id` int(11) NOT NULL,
-  `id_clase` int(11) NOT NULL,
-  `numero` int(11) NOT NULL,
-  `opciones` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL,
+  `id_clase` int NOT NULL,
+  `numero` int NOT NULL,
+  `opciones` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -273,11 +274,11 @@ CREATE TABLE `equipamientoclaseelegir` (
 --
 
 CREATE TABLE `equipamientoopciones` (
-  `id` int(11) NOT NULL,
-  `id_arma` int(11) NOT NULL,
-  `id_objeto` int(11) NOT NULL,
-  `id_armaduraOEscudo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL,
+  `id_arma` int NOT NULL,
+  `id_objeto` int NOT NULL,
+  `id_armaduraOEscudo` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -286,13 +287,13 @@ CREATE TABLE `equipamientoopciones` (
 --
 
 CREATE TABLE `equipamientopersonaje` (
-  `id_personaje` int(11) NOT NULL,
-  `id_arma` int(11) NOT NULL,
-  `id_objeto` int(11) NOT NULL,
-  `id_armaduraOEscudo` int(11) NOT NULL,
-  `tipo` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `cantidad` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_personaje` int NOT NULL,
+  `id_arma` int NOT NULL,
+  `id_objeto` int NOT NULL,
+  `id_armaduraOEscudo` int NOT NULL,
+  `tipo` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `cantidad` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -301,14 +302,14 @@ CREATE TABLE `equipamientopersonaje` (
 --
 
 CREATE TABLE `habilidadespersonaje` (
-  `id_personaje` int(11) NOT NULL,
-  `fuerza` int(11) NOT NULL,
-  `destreza` int(11) NOT NULL,
-  `constitucion` int(11) NOT NULL,
-  `inteligencia` int(11) NOT NULL,
-  `sabiduria` int(11) NOT NULL,
-  `carisma` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_personaje` int NOT NULL,
+  `fuerza` int NOT NULL,
+  `destreza` int NOT NULL,
+  `constitucion` int NOT NULL,
+  `inteligencia` int NOT NULL,
+  `sabiduria` int NOT NULL,
+  `carisma` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -317,14 +318,14 @@ CREATE TABLE `habilidadespersonaje` (
 --
 
 CREATE TABLE `habilidadesraza` (
-  `id_raza` int(11) NOT NULL,
-  `fuerza` int(11) NOT NULL,
-  `destreza` int(11) NOT NULL,
-  `constitucion` int(11) NOT NULL,
-  `inteligencia` int(11) NOT NULL,
-  `sabiduria` int(11) NOT NULL,
-  `carisma` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_raza` int NOT NULL,
+  `fuerza` int NOT NULL,
+  `destreza` int NOT NULL,
+  `constitucion` int NOT NULL,
+  `inteligencia` int NOT NULL,
+  `sabiduria` int NOT NULL,
+  `carisma` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -333,10 +334,10 @@ CREATE TABLE `habilidadesraza` (
 --
 
 CREATE TABLE `idiomas` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `escritura` varchar(100) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL,
+  `nombre` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `escritura` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `idiomas`
@@ -360,9 +361,9 @@ INSERT INTO `idiomas` VALUES(10, 'Celestial', 'Celestial');
 --
 
 CREATE TABLE `idiomasclase` (
-  `id_idioma` int(11) NOT NULL,
-  `id_clase` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_idioma` int NOT NULL,
+  `id_clase` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -371,9 +372,9 @@ CREATE TABLE `idiomasclase` (
 --
 
 CREATE TABLE `idiomasclaseelegir` (
-  `id_idioma` int(11) NOT NULL,
-  `id_clase` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_idioma` int NOT NULL,
+  `id_clase` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -382,9 +383,9 @@ CREATE TABLE `idiomasclaseelegir` (
 --
 
 CREATE TABLE `idiomaspersonaje` (
-  `id_idioma` int(11) NOT NULL,
-  `id_personaje` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_idioma` int NOT NULL,
+  `id_personaje` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -393,9 +394,9 @@ CREATE TABLE `idiomaspersonaje` (
 --
 
 CREATE TABLE `idiomasraza` (
-  `id_idioma` int(11) NOT NULL,
-  `id_raza` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_idioma` int NOT NULL,
+  `id_raza` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `idiomasraza`
@@ -417,9 +418,9 @@ INSERT INTO `idiomasraza` VALUES(1, 5);
 --
 
 CREATE TABLE `idiomasrazaelegir` (
-  `id_idioma` int(11) NOT NULL,
-  `id_raza` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_idioma` int NOT NULL,
+  `id_raza` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -428,9 +429,9 @@ CREATE TABLE `idiomasrazaelegir` (
 --
 
 CREATE TABLE `idiomastrasfondoelegir` (
-  `id_idioma` int(11) NOT NULL,
-  `id_trasfondo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_idioma` int NOT NULL,
+  `id_trasfondo` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -439,13 +440,13 @@ CREATE TABLE `idiomastrasfondoelegir` (
 --
 
 CREATE TABLE `monedaspersonaje` (
-  `id_personaje` int(11) NOT NULL,
-  `pc` int(11) NOT NULL,
-  `pp` int(11) NOT NULL,
-  `pe` int(11) NOT NULL,
-  `po` int(11) NOT NULL,
-  `ppt` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_personaje` int NOT NULL,
+  `pc` int NOT NULL,
+  `pp` int NOT NULL,
+  `pe` int NOT NULL,
+  `po` int NOT NULL,
+  `ppt` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -454,11 +455,11 @@ CREATE TABLE `monedaspersonaje` (
 --
 
 CREATE TABLE `objetos` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `descripcion` varchar(200) CHARACTER SET utf8 NOT NULL,
-  `peso` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `descripcion` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `peso` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -467,57 +468,54 @@ CREATE TABLE `objetos` (
 --
 
 CREATE TABLE `personajes` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `jugador` int(11) NOT NULL,
-  `raza` int(11) NOT NULL,
-  `clase` int(11) NOT NULL,
-  `trasfondo` int(11) NOT NULL,
-  `xp` int(11) DEFAULT NULL,
-  `bonus_competencia` int(11) DEFAULT NULL,
-  `modificador_de_tiradas_de_salvacion` varchar(1000) CHARACTER SET utf8 DEFAULT NULL,
-  `tiradas_de_salvacion_cd` int(11) DEFAULT NULL,
-  `iniciativa` int(11) DEFAULT NULL,
-  `clase_de_armadura` int(11) DEFAULT NULL,
-  `defensas` varchar(1000) CHARACTER SET utf8 DEFAULT NULL,
-  `inspiracion` int(11) DEFAULT NULL,
-  `velocidad` varchar(500) CHARACTER SET utf8 DEFAULT NULL,
-  `dado_de_golpe` int(11) DEFAULT NULL,
-  `vida_maxima` int(11) DEFAULT NULL,
-  `vida_currente` int(11) DEFAULT NULL,
-  `sentidos` varchar(500) CHARACTER SET utf8 DEFAULT NULL,
-  `genero` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `edad` int(11) DEFAULT NULL,
+  `id` int NOT NULL,
+  `nombre` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `jugador` int NOT NULL,
+  `raza` int NOT NULL,
+  `clase` int NOT NULL,
+  `trasfondo` int NOT NULL,
+  `xp` int DEFAULT NULL,
+  `bonus_competencia` int DEFAULT NULL,
+  `modificador_de_tiradas_de_salvacion` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `tiradas_de_salvacion_cd` int DEFAULT NULL,
+  `iniciativa` int DEFAULT NULL,
+  `clase_de_armadura` int DEFAULT NULL,
+  `defensas` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `inspiracion` int DEFAULT NULL,
+  `velocidad` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `dado_de_golpe` int DEFAULT NULL,
+  `vida_maxima` int DEFAULT NULL,
+  `vida_currente` int DEFAULT NULL,
+  `sentidos` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `genero` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `edad` int DEFAULT NULL,
   `altura` float DEFAULT NULL,
   `peso` float DEFAULT NULL,
-  `alineamiento` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `fe` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `alineamiento` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `fe` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `piel` varchar(50) DEFAULT NULL,
-  `ojos` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `pelo` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `apariencia` varchar(1000) CHARACTER SET utf8 DEFAULT NULL,
-  `aliados_y_organizaciones` varchar(1000) CHARACTER SET utf8 DEFAULT NULL,
-  `personalidad` varchar(1000) CHARACTER SET utf8 DEFAULT NULL,
-  `ideales` varchar(1000) CHARACTER SET utf8 DEFAULT NULL,
+  `ojos` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `pelo` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `apariencia` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `aliados_y_organizaciones` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `personalidad` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ideales` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `vinculos` varchar(1000) DEFAULT NULL,
-  `defectos` varchar(1000) CHARACTER SET utf8 DEFAULT NULL,
-  `historia` varchar(1000) CHARACTER SET utf8 DEFAULT NULL,
-  `notas_adicionales` varchar(1000) CHARACTER SET utf8 DEFAULT NULL,
-  `habilidad_de_conjuros` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `salvacion_conjuro` int(11) DEFAULT NULL,
-  `bonus_ataque_conjuro` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
+  `defectos` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `historia` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `notas_adicionales` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `habilidad_de_conjuros` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `salvacion_conjuro` int DEFAULT NULL,
+  `bonus_ataque_conjuro` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Estructura de tabla para la tabla `personajeusuario`
+-- Volcado de datos para la tabla `personajes`
 --
 
-CREATE TABLE `personajeusuario` (
-  `id_usuario` int(11) NOT NULL,
-  `id_personaje` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `personajes` VALUES(1, 'pepe', 1, 2, 5, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `personajes` VALUES(2, 'manolo', 1, 5, 6, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `personajes` VALUES(3, 'mariela', 1, 4, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -526,10 +524,10 @@ CREATE TABLE `personajeusuario` (
 --
 
 CREATE TABLE `rasgos` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `descripcion` varchar(1000) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `descripcion` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `rasgos`
@@ -568,9 +566,9 @@ INSERT INTO `rasgos` VALUES(32, 'Rango militar', 'Tienes un rango militar de tu 
 --
 
 CREATE TABLE `rasgosclase` (
-  `id_rasgo` int(11) NOT NULL,
-  `id_clase` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_rasgo` int NOT NULL,
+  `id_clase` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `rasgosclase`
@@ -587,9 +585,9 @@ INSERT INTO `rasgosclase` VALUES(23, 4);
 --
 
 CREATE TABLE `rasgosraza` (
-  `id_rasgo` int(11) NOT NULL,
-  `id_raza` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_rasgo` int NOT NULL,
+  `id_raza` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `rasgosraza`
@@ -622,9 +620,9 @@ INSERT INTO `rasgosraza` VALUES(22, 5);
 --
 
 CREATE TABLE `rasgostrasfondo` (
-  `id_rasgo` int(11) NOT NULL,
-  `id_trasfondo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_rasgo` int NOT NULL,
+  `id_trasfondo` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `rasgostrasfondo`
@@ -645,15 +643,15 @@ INSERT INTO `rasgostrasfondo` VALUES(32, 3);
 --
 
 CREATE TABLE `razas` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `descripcion` varchar(1000) CHARACTER SET utf8 DEFAULT NULL,
-  `edad` varchar(500) CHARACTER SET utf8 DEFAULT NULL,
-  `alineamiento` varchar(500) CHARACTER SET utf8 DEFAULT NULL,
-  `tamaño` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `velocidad` int(11) DEFAULT NULL,
-  `idiomas_elegir` int(11) NOT NULL,
-  `id_padre` int(50) DEFAULT NULL
+  `id` int NOT NULL,
+  `nombre` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `descripcion` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `edad` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `alineamiento` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `tamaño` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `velocidad` int DEFAULT NULL,
+  `idiomas_elegir` int NOT NULL,
+  `id_padre` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=ascii;
 
 --
@@ -662,7 +660,7 @@ CREATE TABLE `razas` (
 
 INSERT INTO `razas` VALUES(2, 'Humano', 'En el cómputo de la mayoría de los mundos, los humanos son la más joven de las razas comunes, con una llegada tardía al\r\nmundo y una vida corta en comparación con los enanos, elfos, y dragones. Quizás es por su corta vida que se esfuerzan en conseguir tanto como pueden en los años que se les han dado. O quizás sienten que tienen algo que demostrar a las razas más antiguas, y es por eso que construyen poderosos imperios basados en la conquista y el comercio. Sea lo que sea lo que les motiva, los humanos son los innovadores, los pioneros y los triunfadores de los mundos.', 'Los humanos alcanzan la madurez cerca de la veintena y rara vez llegan a vivir un siglo completo.', 'Los humanos tienen a no tener un alineamiento concreto. En ellos se puede encontrar tanto lo mejor como lo peor.', ' Mediano(1,5 m — 1,8 m)', 30, 1, NULL);
 INSERT INTO `razas` VALUES(3, 'Semielfo', 'Caminando entre dos mundos pero sin pertenecer realmente a ninguno de los dos, los semielfos combinan lo que algunos dicen ser las mejores cualidades de sus progenitores humanos y elfos: la curiosidad, inventiva y ambición humana templada por los sentidos refinados, el amor por el arte y la naturaleza de los elfos. \r\nAlgunos semielfos viven entre los humanos, separados por sus diferencias emocionales y físicas, viendo a amigos y seres queridos envejecer mientras el tiempo no les toca a ellos. Otros viven entre los elfos, aumentando su inquietud conforme se acercan a la edad adulta en los intemporales reinos élficos, mientras sus compañeros continúan viviendo como niños. \r\nMuchos semielfos, incapaces de encajar en ninguna sociedad, eligen una vida errante en solitario o uniéndose a otros inadaptados y marginados en la vida aventurera.', 'Los semielfos maduran a la misma velocidad que\r\nlos humanos y alcanzan la adultez alrededor de los 20 años.\r\nViven, sin embargo, mucho más que los humanos, excediendo a menudo los 180 años.', 'Los semielfos comparten la inclinación caótica de su herencia élfica. Valoran tanto la libertad personal como la expresión creativa, no demostrando amor por los líderes ni deseo de seguidores. Les fastidian las reglas, molestándose con las demandas de los demás, y en ocasiones se muestran poco fiables o por lo menos impredecibles.', ' Mediano(1,5 m — 1,8 m)', 30, 1, NULL);
-INSERT INTO `razas` VALUES(4, 'Semiorco', 'Ya sean unidos bajo el liderazgo de un poderoso brujo o luchando para resistir tras años de conflicto, las tribus humanas y orcas a veces forman alianzas, uniendo sus fuerzas en una horda mayor para el terror de las tierras civilizadas cercanas. Cuando esas alianzas se sellan con matrimonios, nacen los semiorcos. Algunos semiorcos crecen para convertirse en jefes orgullosos de tribus orcas, con su sangre humana proveyéndoles de ventaja sobre sus rivales orcos purasangres. Algunos se aventuran en el mundo para probar su valía ante los humanos y otras razas más civilizadas. Muchos de estos se convierten en aventureros, cosechando grandeza por sus grandes hazañas y notoriedad por sus costumbres bárbaras y su furia salvaje.', 'Los semiorcos maduran un poco más rápido que\r\nlos humanos, alcanzando la adultez alrededor de los 14. Envejecen notablemente más rápido y raramente viven más de 75 años', '. Los semiorcos heredan una tendencia hacia el caos de sus padres orcos y no están muy inclinados hacia el bien. Los semiorcos criados entre orcos y dispuestos a pasar sus vidas entre ellos son usualmente malvados', ' Mediano(1,6 m — 1,9 m)', 30, 0, NULL);
+INSERT INTO `razas` VALUES(4, 'Semiorco', 'Ya sean unidos bajo el liderazgo de un poderoso brujo o luchando para resistir tras años de conflicto, las tribus humanas y orcas a veces forman alianzas, uniendo sus fuerzas en una horda mayor para el terror de las tierras civilizadas cercanas. Cuando esas alianzas se sellan con matrimonios, nacen los semiorcos. Algunos semiorcos crecen para convertirse en jefes orgullosos de tribus orcas, con su sangre humana proveyéndoles de ventaja sobre sus rivales orcos purasangres. Algunos se aventuran en el mundo para probar su valía ante los humanos y otras razas más civilizadas. Muchos de estos se convierten en aventureros, cosechando grandeza por sus grandes hazañas y notoriedad por sus costumbres bárbaras y su furia salvaje.', 'Los semiorcos maduran un poco más rápido que\r\nlos humanos, alcanzando la adultez alrededor de los 14. Envejecen notablemente más rápido y raramente viven más de 75 años', 'Los semiorcos heredan una tendencia hacia el caos de sus padres orcos y no están muy inclinados hacia el bien. Los semiorcos criados entre orcos y dispuestos a pasar sus vidas entre ellos son usualmente malvados', ' Mediano(1,6 m — 1,9 m)', 30, 0, NULL);
 INSERT INTO `razas` VALUES(5, 'Tiflin', 'Ser recibido con miradas y susurros, sufrir violencia e insultos en la calle, ver la desconfianza y el miedo en todos los ojos: este es el destino de los tiflin. Y para retorcer el puñal, los tiflin saben que esto es a causa de un pacto sellado hace generaciones que infundió la esencia de Asmodeo —señor supremo de los Nueve Infiernos— en su linaje. Su apariencia y su naturaleza no tienen más culpa que el resultado de un antiguo pecado, por el que ellos y sus hijos, y los hijos de sus hijos, siempre se considerarán responsables.', 'Los tiflin maduran a la misma velocidad que los humanos pero viven unos pocos años más.', 'Los tiflin no tienen una tendencia innata hacia el mal, pero muchos de ellos acaban allí. Malvados o no, su naturaleza independiente inclina a muchos tiflin hacia un alineamiento caótico.', ' Mediano(1,5 m — 1,8 m)', 30, 0, NULL);
 INSERT INTO `razas` VALUES(6, 'Elfo', 'os elfos son un pueblo mágico de gracia sobrenatural, viviendo en el mundo sin ser del todo parte de él. Viven en lugares de etérea belleza, en medio de antiguos bosques o en plateados minaretes que resplandecen con luz feérica, donde una suave música flota en el aire y delicadas fragancias son transportadas por la brisa. Los elfos aman la naturaleza y la magia, el arte y la maestría, la música y la poesía, y las cosas buenas del mundo', 'Aunque los elfos alcanzan la madurez física más o menos a la misma edad que los humanos, la comprensión élfica de la madurez va más allá del crecimiento físico y abarca la experiencia del mundo. Un elfo típicamente reclama la edad adulta y un nombre adulto alrededor de los 100 años y puede vivir hasta los 750', 'Los elfos aman la libertad, la variedad y la autoexpresión, así que se inclinan fuertemente hacia los aspectos más gentiles del caos. Valoran y protegen la libertad de los demás al igual que la suya propia, y son más a menudo de alineamiento bueno que de cualquier otro. Los drow son la excepción; su exilio en el inframundo los ha hecho viciosos y peligrosos. Los drow son regularmente más malvados que otra cosa', 'Mediano(1,5 m — 1,8 m)', 30, 0, NULL);
 INSERT INTO `razas` VALUES(7, 'Alto Elfo', NULL, NULL, NULL, NULL, NULL, 1, 6);
@@ -674,14 +672,14 @@ INSERT INTO `razas` VALUES(7, 'Alto Elfo', NULL, NULL, NULL, NULL, NULL, 1, 6);
 --
 
 CREATE TABLE `tiradassalvacion` (
-  `id_personaje` int(11) NOT NULL,
-  `fuerza` int(11) NOT NULL,
-  `destreza` int(11) NOT NULL,
-  `constitucion` int(11) NOT NULL,
-  `inteligencia` int(11) NOT NULL,
-  `sabiduria` int(11) NOT NULL,
-  `carisma` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_personaje` int NOT NULL,
+  `fuerza` int NOT NULL,
+  `destreza` int NOT NULL,
+  `constitucion` int NOT NULL,
+  `inteligencia` int NOT NULL,
+  `sabiduria` int NOT NULL,
+  `carisma` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -690,11 +688,11 @@ CREATE TABLE `tiradassalvacion` (
 --
 
 CREATE TABLE `trasfondos` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `descripcion` varchar(1000) CHARACTER SET utf8 NOT NULL,
-  `idiomas_elegir` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `descripcion` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `idiomas_elegir` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `trasfondos`
@@ -711,10 +709,10 @@ INSERT INTO `trasfondos` VALUES(3, 'Soldado', 'La guerra ha sido tu vida desde q
 --
 
 CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `contrasena` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -842,13 +840,6 @@ ALTER TABLE `personajes`
   ADD KEY `fk_personajes-trasfondo` (`trasfondo`);
 
 --
--- Indices de la tabla `personajeusuario`
---
-ALTER TABLE `personajeusuario`
-  ADD KEY `fk_personajeUsuario-personaje` (`id_personaje`),
-  ADD KEY `fk_personajeUsuario-usuario` (`id_usuario`);
-
---
 -- Indices de la tabla `rasgos`
 --
 ALTER TABLE `rasgos`
@@ -912,73 +903,73 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `armadurasyescudos`
 --
 ALTER TABLE `armadurasyescudos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `armas`
 --
 ALTER TABLE `armas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `clases`
 --
 ALTER TABLE `clases`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `conjuros`
 --
 ALTER TABLE `conjuros`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `equipamientoopciones`
 --
 ALTER TABLE `equipamientoopciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `idiomas`
 --
 ALTER TABLE `idiomas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `objetos`
 --
 ALTER TABLE `objetos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `personajes`
 --
 ALTER TABLE `personajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `rasgos`
 --
 ALTER TABLE `rasgos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `razas`
 --
 ALTER TABLE `razas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `trasfondos`
 --
 ALTER TABLE `trasfondos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
@@ -1060,13 +1051,6 @@ ALTER TABLE `personajes`
   ADD CONSTRAINT `fk_personajes-jugador` FOREIGN KEY (`jugador`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_personajes-raza` FOREIGN KEY (`raza`) REFERENCES `razas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_personajes-trasfondo` FOREIGN KEY (`trasfondo`) REFERENCES `trasfondos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `personajeusuario`
---
-ALTER TABLE `personajeusuario`
-  ADD CONSTRAINT `fk_personajeUsuario-personaje` FOREIGN KEY (`id_personaje`) REFERENCES `personajes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_personajeUsuario-usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `rasgosclase`
