@@ -7,5 +7,10 @@
 </head>
 <body>
 <?php include 'encabezado.php'; ?>
+<div id="paginaCrearCuenta">
+	<form id="formularioCrearCuenta" autocomplete="off">
+		
+	</form>
+</div>
 </body>
 </html>
