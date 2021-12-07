@@ -98,7 +98,7 @@ CREATE TABLE `competenciasclase` (
   `tipo` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `competencia` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `experto` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -111,7 +111,7 @@ CREATE TABLE `competenciaselegirclase` (
   `id_clase` int NOT NULL,
   `numero` int NOT NULL,
   `opciones` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -124,7 +124,7 @@ CREATE TABLE `competenciaselegirraza` (
   `id_raza` int NOT NULL,
   `numero` int NOT NULL,
   `opciones` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -148,7 +148,7 @@ CREATE TABLE `competenciaselegirtrasfondo` (
 CREATE TABLE `competenciasopciones` (
   `id` int NOT NULL,
   `id_competencia` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -161,7 +161,7 @@ CREATE TABLE `competenciaspersonaje` (
   `tipo` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `competencia` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `experto` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -174,7 +174,7 @@ CREATE TABLE `competenciasraza` (
   `tipo` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `competencia` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `experto` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -187,7 +187,7 @@ CREATE TABLE `competenciastrasfondo` (
   `tipo` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `competencia` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `experto` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -205,7 +205,7 @@ CREATE TABLE `conjuros` (
   `componentes` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `duracion` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `descripcion` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -216,7 +216,7 @@ CREATE TABLE `conjuros` (
 CREATE TABLE `conjurosclase` (
   `id_clase` int NOT NULL,
   `id_conjuro` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -228,7 +228,7 @@ CREATE TABLE `conjurosespacios` (
   `id_clase` int NOT NULL,
   `0` int NOT NULL,
   `1` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -240,7 +240,7 @@ CREATE TABLE `conjurosmaximos` (
   `id_clase` int NOT NULL,
   `0` int NOT NULL,
   `1` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -252,7 +252,7 @@ CREATE TABLE `conjurospersonaje` (
   `id_personaje` int NOT NULL,
   `id_conjuro` int NOT NULL,
   `preparado` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -265,7 +265,7 @@ CREATE TABLE `equipamientoclaseelegir` (
   `id_clase` int NOT NULL,
   `numero` int NOT NULL,
   `opciones` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -278,7 +278,7 @@ CREATE TABLE `equipamientoopciones` (
   `id_arma` int NOT NULL,
   `id_objeto` int NOT NULL,
   `id_armaduraOEscudo` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -293,7 +293,7 @@ CREATE TABLE `equipamientopersonaje` (
   `id_armaduraOEscudo` int NOT NULL,
   `tipo` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `cantidad` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -309,7 +309,7 @@ CREATE TABLE `habilidadespersonaje` (
   `inteligencia` int NOT NULL,
   `sabiduria` int NOT NULL,
   `carisma` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -325,7 +325,7 @@ CREATE TABLE `habilidadesraza` (
   `inteligencia` int NOT NULL,
   `sabiduria` int NOT NULL,
   `carisma` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -337,7 +337,7 @@ CREATE TABLE `idiomas` (
   `id` int NOT NULL,
   `nombre` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `escritura` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `idiomas`
@@ -363,7 +363,7 @@ INSERT INTO `idiomas` VALUES(10, 'Celestial', 'Celestial');
 CREATE TABLE `idiomasclase` (
   `id_idioma` int NOT NULL,
   `id_clase` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -374,7 +374,7 @@ CREATE TABLE `idiomasclase` (
 CREATE TABLE `idiomasclaseelegir` (
   `id_idioma` int NOT NULL,
   `id_clase` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -385,7 +385,7 @@ CREATE TABLE `idiomasclaseelegir` (
 CREATE TABLE `idiomaspersonaje` (
   `id_idioma` int NOT NULL,
   `id_personaje` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -396,7 +396,7 @@ CREATE TABLE `idiomaspersonaje` (
 CREATE TABLE `idiomasraza` (
   `id_idioma` int NOT NULL,
   `id_raza` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `idiomasraza`
@@ -420,7 +420,7 @@ INSERT INTO `idiomasraza` VALUES(1, 5);
 CREATE TABLE `idiomasrazaelegir` (
   `id_idioma` int NOT NULL,
   `id_raza` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -431,7 +431,7 @@ CREATE TABLE `idiomasrazaelegir` (
 CREATE TABLE `idiomastrasfondoelegir` (
   `id_idioma` int NOT NULL,
   `id_trasfondo` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -446,7 +446,7 @@ CREATE TABLE `monedaspersonaje` (
   `pe` int NOT NULL,
   `po` int NOT NULL,
   `ppt` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -459,7 +459,7 @@ CREATE TABLE `objetos` (
   `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `descripcion` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `peso` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -507,7 +507,7 @@ CREATE TABLE `personajes` (
   `habilidad_de_conjuros` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `salvacion_conjuro` int DEFAULT NULL,
   `bonus_ataque_conjuro` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `personajes`
@@ -527,7 +527,7 @@ CREATE TABLE `rasgos` (
   `id` int NOT NULL,
   `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `descripcion` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `rasgos`
@@ -568,7 +568,7 @@ INSERT INTO `rasgos` VALUES(32, 'Rango militar', 'Tienes un rango militar de tu 
 CREATE TABLE `rasgosclase` (
   `id_rasgo` int NOT NULL,
   `id_clase` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `rasgosclase`
@@ -587,7 +587,7 @@ INSERT INTO `rasgosclase` VALUES(23, 4);
 CREATE TABLE `rasgosraza` (
   `id_rasgo` int NOT NULL,
   `id_raza` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `rasgosraza`
@@ -622,7 +622,7 @@ INSERT INTO `rasgosraza` VALUES(22, 5);
 CREATE TABLE `rasgostrasfondo` (
   `id_rasgo` int NOT NULL,
   `id_trasfondo` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `rasgostrasfondo`
@@ -679,7 +679,7 @@ CREATE TABLE `tiradassalvacion` (
   `inteligencia` int NOT NULL,
   `sabiduria` int NOT NULL,
   `carisma` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -692,7 +692,7 @@ CREATE TABLE `trasfondos` (
   `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `descripcion` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `idiomas_elegir` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `trasfondos`
@@ -712,7 +712,7 @@ CREATE TABLE `usuarios` (
   `id` int NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `contrasena` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuarios`

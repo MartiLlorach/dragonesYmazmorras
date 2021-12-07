@@ -65,19 +65,19 @@ function printarResumenFicha($nombre, $raza, $clase){
   $src ="";
   switch ($raza) {
     case 'Humano':
-      $src = "https://www.dndbeyond.com/avatars/9/386/636327460764467148.jpeg";
+      $src = "imagenes/razas/Humano.jpeg";
       break;
     case 'Semielfo':
-      $src = 'https://www.dndbeyond.com/avatars/9/381/636327459940259125.jpeg';
+      $src = 'imagenes/razas/Semielfo.jpeg';
       break;
     case 'Semiorco':
-      $src = 'https://www.dndbeyond.com/avatars/9/385/636327460616726799.jpeg';
+      $src = 'imagenes/razas/Semiorco.jpeg';
       break;
     case 'Tiflin':
-      $src = 'https://www.dndbeyond.com/avatars/9/388/636327461109911160.jpeg';
+      $src = 'imagenes/razas/Tiflin.jpeg';
       break;
     case 'Alto Elfo':
-      $src = 'https://www.dndbeyond.com/avatars/9/366/636327456833931461.jpeg';
+      $src = 'imagenes/razas/AltoElfo.jpeg';
       break;
   }
   echo "
@@ -112,6 +112,41 @@ function conseguirNombreTabla($id, $tabla, $oBbdd){
     trigger_error("no existe el id $id en la tabla $tabla");
   }
 
+  unset($query);
+}
+
+function conseguirRazas($oBbdd){
+  $razas = [];
+  
+  $query = $oBbdd->prepare("select * from razas");
+  $query->execute();
+
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  } else {
+    while ($row = $query -> fetch()) {
+      $razas[$row['id']] = [
+        'nombre' => $row['nombre'],
+        'descripcion' => $row['descripcion'],
+        'edad' => $row['edad'],
+        'alineamiento' => $row['alineamiento'],
+        'tamaño' => $row['tamaño'],
+        'velocidad' => $row['velocidad'],
+        'idiomas_elegir' => $row['idiomas_elegir'] 
+      ];
+
+      if ($row['id_padre']) {
+        $razas[$row['id']]['id_padre'] = $row['id_padre'];
+      }
+    }
+    $jsonRazas = json_encode($razas);
+    echo "
+      <script> conseguirRazas((" . $jsonRazas . ")) </script>
+    ";
+
+  }
   unset($query);
 }
 ?>
