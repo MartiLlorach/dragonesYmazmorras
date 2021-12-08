@@ -13,6 +13,9 @@
 				Bienvenido al generador de fichas para D&D 5e, en este generador podras generar tus fichas y posteriormente enfrentarlas para ver cómo rendirian en el juego real.
 			</p>
 		</div>
+		<?php
+			if (!isset($_SESSION["usuario"])) {
+		?>
 		<div id="paginaInicioDer">
 			<form id="formularioLogin" autocomplete="off" method="post">
 				<h2>Iniciar sesión</h2>
@@ -31,6 +34,7 @@
 
 		  ?>
 		</div>
+		<?php } ?>
 	</div>
 </body>
 </html>

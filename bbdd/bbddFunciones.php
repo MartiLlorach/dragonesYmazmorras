@@ -143,7 +143,89 @@ function conseguirRazas($oBbdd){
     }
     $jsonRazas = json_encode($razas);
     echo "
-      <script> conseguirRazas((" . $jsonRazas . ")) </script>
+      <script> definirRazas((" . $jsonRazas . ")) </script>
+    ";
+
+  }
+  unset($query);
+}
+
+function conseguirClases($oBbdd){
+  $clases = [];
+  
+  $query = $oBbdd->prepare("select * from clases");
+  $query->execute();
+
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  } else {
+    while ($row = $query -> fetch()) {
+      $clases[$row['id']] = [
+        'nombre' => $row['nombre'],
+        'dado_de_golpe' => $row['dado_de_golpe'],
+        'idiomas_elegir' => $row['idiomas_elegir'], 
+        'riqueza_inicial' => $row['riqueza_inicial'],
+        'descripcion' => $row['descripcion']
+      ];
+    }
+    $jsonClases = json_encode($clases);
+    echo "
+      <script> definirClases((" . $jsonClases . ")) </script>
+    ";
+
+  }
+  unset($query);
+}
+
+function conseguirTrasfondos($oBbdd){
+  $trasfondos = [];
+  
+  $query = $oBbdd->prepare("select * from trasfondos");
+  $query->execute();
+
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  } else {
+    while ($row = $query -> fetch()) {
+      $trasfondos[$row['id']] = [
+        'nombre' => $row['nombre'],
+        'descripcion' => $row['descripcion'],
+        'idiomas_elegir' => $row['idiomas_elegir'] 
+      ];
+    }
+    $jsonTrasfondos = json_encode($trasfondos);
+    echo "
+      <script> definirTrasfondos((" . $jsonTrasfondos . ")) </script>
+    ";
+
+  }
+  unset($query);
+}
+
+function conseguirIdiomas($oBbdd){
+  $idiomas = [];
+  
+  $query = $oBbdd->prepare("select * from idiomas");
+  $query->execute();
+
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  } else {
+    while ($row = $query -> fetch()) {
+      $idiomas[$row['id']] = [
+        'nombre' => $row['nombre'],
+        'escritura' => $row['escritura']
+      ];
+    }
+    $jsonIdiomas = json_encode($idiomas);
+    echo "
+      <script> definirIdiomas((" . $jsonIdiomas . ")) </script>
     ";
 
   }
