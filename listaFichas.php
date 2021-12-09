@@ -8,6 +8,7 @@
 	<title>Tus Fichas</title>
 <?php include 'encabezado.php'; ?>
   <body id="listaFichas">
+		<h1 class=titulo>Listado de fichas</h1>
     <?php
       include 'bbdd/bbddConexion.php';
       include 'bbdd/bbddFunciones.php';
