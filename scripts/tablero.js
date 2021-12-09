@@ -3,9 +3,9 @@ $( () => {
     $(location).prop('href', 'listaFichas.php');
   });
   $("#botonCrearFicha").click( () => {
-    $(location).prop('href', 'crearFicha.html');
+    $(location).prop('href', 'crearFicha.php');
   });
   $("#botonTestearFicha").click( () => {
-    $(location).prop('href', 'testeaFicha.html');
+    $(location).prop('href', 'testeaFicha.php');
   });
 })

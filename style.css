@@ -36,8 +36,6 @@ button:hover, input[type=submit]:hover{
 	cursor: pointer;
 }
 
-/* ESTILOS ENCABEZADO */
-
 .titulo{
 	font-family: 'Eczar', serif;
 	color: var(--color2);
@@ -52,15 +50,23 @@ button:hover, input[type=submit]:hover{
 	margin: 10px;
 }
 
+/* ESTILOS ENCABEZADO */
+
 #encabezado {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
 	display: flex;
-	background-color: var(--color4);
+	background-color: var(--color5);
 	flex-direction: row;
   	flex-wrap: nowrap;
   	justify-content: space-between;
   	align-items: baseline;
 	padding: 0 10px;
 	margin-bottom: 20px;
+	border-radius: 5px;
+	border: 2px solid var(--color4);
+	z-index: 1000;
 }
 
 #encabezado button {
@@ -83,8 +89,8 @@ button:hover, input[type=submit]:hover{
   width: 150px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-	top: 67px;
-	right: 82px;
+  top: 59px;
+  right: 74px;
 }
 
 .encabezadoDesplegable a {
@@ -202,3 +208,121 @@ input[type=submit] {
 	 display: block;
 	 margin: 10px;
  }
+
+/* ESTILOS LISTA FICHAS */
+#listaFichas .resumenFicha{
+	display: flex;
+	width: min-content;
+	margin: 10px auto;
+	background: var(--color4);
+	border-radius: 5px;
+	align-items: center;
+}
+
+#listaFichas .resumenBotones{
+	display: flex;
+	flex-direction: column;
+}
+
+#listaFichas .resumenFicha button{
+	margin: 2px 5px;
+}
+
+#listaFichas .resumenFicha .verFicha{
+	background-color: rgb(0, 100, 0);
+	color: var(--color6);
+}
+#listaFichas .resumenFicha .eliminarFicha{
+	background-color: rgb(200, 0, 0);
+	color: var(--color6);
+}
+#listaFichas .resumenFicha .verFicha:hover{
+	color: var(--color3);
+	background-color: rgb(0, 80, 0);
+}
+#listaFichas .resumenFicha .eliminarFicha:hover{
+	color: var(--color3);
+	background-color: rgb(180, 0, 0);
+}
+
+#listaFichas .resumenFicha .imgRaza{
+	width: auto;
+	height: 50px;
+	margin-left: 10px;
+}
+#listaFichas .resumenFicha p{
+	padding: 10px;
+}
+#listaFichas{
+	text-align: center;
+}
+
+/* ESTILOS CREACION DE PERSONAJE */
+#crearFicha {
+	text-align: center;
+}
+#crearFicha .div{
+	background-color: var(--color4);
+	width: max-content;
+	padding: 50px;
+	margin: 25px auto;
+	border-radius: 5px;
+}
+#crearFicha .divBotonesNavegacion{
+	padding: 10px;
+}
+#crearFicha .divBotonesNavegacion .btnAceptar:hover{
+	color: var(--color3);
+	background-color: rgb(0, 80, 0);
+}
+#crearFicha .divBotonesNavegacion .btnCancelar:hover{
+	color: var(--color3);
+	background-color: rgb(180, 0, 0);
+}
+#crearFicha .btnAceptar{
+	background-color: rgb(0, 100, 0);
+}
+#crearFicha .btnCancelar{
+	background-color: rgb(200, 0, 0);
+}
+#crearFicha .descripcion{
+	width: 1000px;
+	display: flex;
+	align-items: center;
+}
+.descripcion img{
+	width: 100px;
+	height: 100px;
+	margin: 10px;
+}
+#crearFicha #divRaza select, #crearFicha #divClase select, #crearFicha #divTrasfondo select{
+	margin: 5px;
+}
+#crearFicha .ckbIdioma:checked + label{
+	background-color: var(--color1);
+	border-radius: 5px;
+}
+#crearFicha #divIdioma label{
+	padding: 2px;
+}
+#crearFicha #divHabilidades{
+		display: flex;
+		flex-direction: column;
+}
+#crearFicha #contenedorHabilidades{
+	display: flex;
+  width: 40%;
+}
+#crearFicha #contenedorHabilidades .divHabilidad{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 5px;
+	border: 2px solid var(--color4);
+	background-color: var(--color5);
+	padding: 5px;
+	color: var(--color3);
+}
+#crearFicha #contenedorHabilidades .sctHabilidad{
+	width: 5vw;
+}
