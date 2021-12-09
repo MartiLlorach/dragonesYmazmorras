@@ -202,3 +202,16 @@ input[type=submit] {
 	 display: block;
 	 margin: 10px;
  }
+
+/* ESTILOS CREAR CUENTA */
+#paginaCrearCuenta {
+	display: flex;
+	justify-content: center;
+}
+
+#formularioCrearCuenta {
+	display: block;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--color4);
+}
