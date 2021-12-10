@@ -51,8 +51,8 @@ function usuarioCorrecto($oBbdd) {
           $query->bindParam(':fecha', $_POST['nacimiento']);
           $query->bindParam(':email', $_POST['nuevoCorreo']);
           $query->execute();
+          $_SESSION['creacion'] =true;
           header("Location: paginaInicio.php");
-          echo "<script>alerta('Cuenta creada con éxito.','bien');</script>";
         }else{
           echo "<script>alerta('Las contraseñas no coinciden.','mal');</script>";
         }

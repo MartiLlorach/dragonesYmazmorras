@@ -3,8 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<title>Crear Cuenta</title>
-	<?php include 'encabezado.php'; ?>
+	<?php
+		$banderaCrearCuenta = true;
+		include 'encabezado.php';
+	?>
 <div id="paginaCrearCuenta">
 	<form id="formularioCrearCuenta" autocomplete="off" method="post">
 		<h2>Crea una cuenta</h2>
