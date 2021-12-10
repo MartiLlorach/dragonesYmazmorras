@@ -211,7 +211,35 @@ input[type=submit] {
 
 #formularioCrearCuenta {
 	display: block;
-	justify-content: center;
-	align-items: center;
 	background-color: var(--color4);
+	text-align: right;
+	padding: 20px;
+}
+#formularioCrearCuenta h2 {
+	text-align: center;
+	font-size: 35px;
+}
+#formularioCrearCuenta input, label {
+	font-size: 20px;
+}
+
+#camposFormulario {
+	justify-content: flex-end;
+}
+/* **EXPANSIÓN DEL PLAZO FINAL + HABITACIÓN DISPONIBLE**
+Buenas tardes,
+Comunicamos la expansión del plazo de reservas hasta el miércoles día 15 a las 23:59 debido a que ya están las habitaciones completadas y solo aceptamos nuevas reservas para la cena
+*/
+
+#botonesFormulario {
+	display: flex;
+	justify-content: space-between;
+	align-content: flex-end;
+	font-size: 20px;
+	margin-top: 10px;
+}
+
+#botonesFormulario button {
+
+	font-size: 20px;
 }
