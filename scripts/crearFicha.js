@@ -31,7 +31,7 @@ function aceptarClick(){
     switch (count) {
         case 1:
             if ($("#InpNombrePersonaje").val()==''){
-                //mensaje de error
+                alerta("Escribe un nombre","aviso");
             } else {
                 toggleNombre();
                 insertarSctRazas();
@@ -39,7 +39,7 @@ function aceptarClick(){
             break;
         case 2:
             if (($("#sctRaza").val() == null) || ($("#sctSubraza").length == 1 && $("#sctSubraza").val() == null)) {
-                //mensaje de error
+                alerta("Selecciona una raza","aviso");
             } else {
                 toggleRaza();
                 insertarSctClases();
@@ -47,7 +47,7 @@ function aceptarClick(){
             break;
         case 3:
             if ($("#sctClase").val() == null) {
-                //mensaje de error
+                alerta("Selecciona una clase","aviso");
             } else {
                 toggleClase();
                 insertarSctHabilidades();
@@ -59,7 +59,7 @@ function aceptarClick(){
             break;
         case 5:
             if ($("#sctTrasfondo").val() == null) {
-                //mensaje de error
+                alerta("Selecciona un trasfondo","aviso");
             } else {
                 toggleTrasfondo();
                 insertarSctIdiomas();
@@ -375,7 +375,7 @@ function insertarSctHabilidades(){
 
     puntos += costes[anteriores[$(e.target).attr('id')]]-costes[selected];
     if (puntos<0){
-      //mensaje de error
+      alerta("No puedes tener puntos de compra negativos","aviso");
       puntos -= costes[anteriores[$(e.target).attr('id')]]-costes[selected];
       $(e.target).val(anteriores[$(e.target).attr('id')]);
     } else {
@@ -513,6 +513,8 @@ function insertarSctIdiomas(){
     $(".ckbIdioma").change( (e) => {
 
         if ($(".ckbIdioma:checked").length > numIdiomas){
+            if (numIdiomas = 1) alerta(`Solo puedes tener ${numIdiomas} idioma`,"aviso");
+            else alerta(`Solo puedes tener ${numIdiomas} idiomas`,"aviso");
             $(e.target).prop("checked", false);
         }
 

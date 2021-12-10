@@ -4,7 +4,10 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Crear Cuenta</title>
-	<?php include 'encabezado.php'; ?>
+	<?php
+		$banderaCrearCuenta = true;
+		include 'encabezado.php';
+	?>
 <div id="paginaCrearCuenta">
 	<form id="formularioCrearCuenta" autocomplete="off" method="post">
 		<h2>Crea una cuenta</h2>
