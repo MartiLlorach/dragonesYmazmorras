@@ -281,6 +281,45 @@ input[type=submit] {
 	 margin: 10px;
  }
 
+
+/* ESTILOS CREAR CUENTA */
+#paginaCrearCuenta {
+	display: flex;
+	justify-content: center;
+}
+
+#formularioCrearCuenta {
+	display: block;
+	background-color: var(--color4);
+	text-align: right;
+	padding: 20px;
+}
+#formularioCrearCuenta h2 {
+	text-align: center;
+	font-size: 35px;
+}
+#formularioCrearCuenta input, label {
+	font-size: 20px;
+}
+
+#camposFormulario {
+	justify-content: flex-end;
+}
+
+
+#botonesFormulario {
+	display: flex;
+	justify-content: space-between;
+	align-content: flex-end;
+	font-size: 20px;
+	margin-top: 10px;
+}
+
+#botonesFormulario button {
+
+	font-size: 20px;
+}
+
 /* ESTILOS LISTA FICHAS */
 #listaFichas .resumenFicha{
 	display: flex;
@@ -398,3 +437,4 @@ input[type=submit] {
 #crearFicha #contenedorHabilidades .sctHabilidad{
 	width: 5vw;
 }
+
