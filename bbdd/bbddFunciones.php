@@ -1,3 +1,4 @@
+
 <?php
 function login($usuario, $contrasena, $oBbdd){
 
@@ -20,7 +21,7 @@ function login($usuario, $contrasena, $oBbdd){
     $_SESSION['usuario'] = $row["nombre"];
     header('Location: '.'tablero.php');
   }else{
-    echo "<p class=errorMsg>ususario o contraseña incorrecto</p>";
+    echo "<script>alerta('Credenciales incorrectas','mal');</script>";
   }
 
   unset($query);
