@@ -31,7 +31,7 @@ function aceptarClick(){
     switch (count) {
         case 1:
             if ($("#InpNombrePersonaje").val()==''){
-                // mensaje de error
+                //mensaje de error
             } else {
                 toggleNombre();
                 insertarSctRazas();
@@ -50,10 +50,14 @@ function aceptarClick(){
                 //mensaje de error
             } else {
                 toggleClase();
-                insertarSctTrasfondos();
+                insertarSctHabilidades();
             }
             break;
         case 4:
+            toggleHabilidades();
+            insertarSctTrasfondos();
+            break;
+        case 5:
             if ($("#sctTrasfondo").val() == null) {
                 //mensaje de error
             } else {
@@ -61,7 +65,7 @@ function aceptarClick(){
                 insertarSctIdiomas();
             }
             break;
-        case 5:
+        case 6:
             toggleIdioma();
             break;
     }
@@ -81,15 +85,19 @@ function cancelarClick(){
             toggleRaza();
             break;
         case 4:
-            $("#divTrasfondo").remove();
+            $("#divHabilidades").remove();
             toggleClase();
             break;
         case 5:
+            $("#divTrasfondo").remove();
+            toggleHabilidades();
+            break;
+        case 6:
             $("#divIdioma").remove();
             toggleTrasfondo();
             break;
     }
-  
+
 }
 
 
@@ -111,7 +119,7 @@ function insertarInpNombre(){
 }
 function toggleNombre(){
     if ($('#InpNombrePersonaje').attr("disabled")){
-        $('#InpNombrePersonaje').attr("disabled", false);    
+        $('#InpNombrePersonaje').attr("disabled", false);
     } else {
         $('#InpNombrePersonaje').attr("disabled", true);
     }
@@ -154,7 +162,7 @@ function insertarSctRazas(){
         if ($('#sctSubraza').length) {
             $('#sctSubraza').remove();
             $('#lblSubraza').remove();
-            
+
         }
 
         var padre = false;
@@ -165,7 +173,7 @@ function insertarSctRazas(){
         }
 
         if (padre) {
-            
+
             $('<label>', {
                 class: 'lbl lblRaza',
                 id: 'lblSubraza',
@@ -192,11 +200,11 @@ function insertarSctRazas(){
             }
 
             $("#sctSubraza").change( (e2) => {
-                
+
                 if ($('#descripcionRaza').length) {
                     $('#descripcionRaza').remove();
                 }
-                
+
                 $('<div>', {
                     id: 'descripcionRaza',
                     class: 'descripcion'
@@ -220,18 +228,18 @@ function insertarSctRazas(){
             $('<p>', {
                 text: razas[$(e.target).val()]["descripcion"]
             }).appendTo('#descripcionRaza');
-        }        
+        }
     });
 }
 
 function toggleRaza(){
     if ($('#sctRaza').attr("disabled")){
-        $('#sctRaza').attr("disabled", false);    
+        $('#sctRaza').attr("disabled", false);
     } else {
         $('#sctRaza').attr("disabled", true);
     }
     if ($('#sctSubraza').attr("disabled")){
-        $('#sctSubraza').attr("disabled", false);    
+        $('#sctSubraza').attr("disabled", false);
     } else {
         $('#sctSubraza').attr("disabled", true);
     }
@@ -257,7 +265,7 @@ function insertarSctClases(){
         hidden: true,
         text: "Clica para ver las clases"
     }).appendTo("#sctClase");
-    for (var clase in clases){        
+    for (var clase in clases){
         $('<option>', {
             value: clase,
             text: clases[clase]['nombre']
@@ -269,7 +277,7 @@ function insertarSctClases(){
         if ($('#descripcionClase').length) {
             $('#descripcionClase').remove();
         }
-    
+
         $('<div>', {
             id: 'descripcionClase',
             class: 'descripcion'
@@ -280,16 +288,139 @@ function insertarSctClases(){
         $('<p>', {
             text: clases[$(e.target).val()]["descripcion"]
         }).appendTo('#descripcionClase');
-            
+
     });
 }
 
 function toggleClase(){
     if ($('#sctClase').attr("disabled")){
-        $('#sctClase').attr("disabled", false);    
+        $('#sctClase').attr("disabled", false);
     } else {
         $('#sctClase').attr("disabled", true);
     }
+}
+
+function insertarSctHabilidades(){
+  let puntos = 27;
+
+  let costes = {
+    8:0,
+    9:1,
+    10:2,
+    11:3,
+    12:4,
+    13:5,
+    14:7,
+    15:9
+  }
+
+  $("<div>", {
+    id: "divHabilidades",
+    class: "div divHabilidades"
+  }).insertBefore('.divBotonesNavegacion');
+  $("<h4>" , {
+    id: 'h4Puntuacion',
+    text: "27/27"
+  }).appendTo("#divHabilidades");
+  $("<div>", {
+    id: "contenedorHabilidades"
+  }).appendTo("#divHabilidades");
+  let habilidades = ["Fuerza", "Destreza", "Constitución", "Inteligencia", "Sabiduría", "Carisma"];
+  for (var i = 0; i < habilidades.length; i++) {
+    $("<div>", {
+      id: `div${habilidades[i]}`,
+      class: "divHabilidad"
+    }).appendTo('#contenedorHabilidades');
+    $("<label>", {
+      class: "lbl lblHabilidad",
+      for: `sct${habilidades[i]}`,
+      text: `${habilidades[i]}`
+    }).appendTo(`#div${habilidades[i]}`);
+    $("<select>", {
+      class: "sctHabilidad",
+      id: `sct${habilidades[i]}`
+    }).appendTo(`#div${habilidades[i]}`);
+    $("<option>", {
+      text: 8,
+      value: 8,
+      puntos: 0,
+      selected: true
+    }).appendTo(`#sct${habilidades[i]}`);
+
+    let selected = parseInt($(`#sct${habilidades[i]}`).val());
+    for (var j = 9; j <= 15; j++) {
+      let diferencia = costes[selected] - costes[j];
+      if ( diferencia>0 ) {
+        diferencia = "+" +diferencia;
+      }
+      let textoOpcion = j + " (" + diferencia + " puntos)";
+      $("<option>", {
+        text: textoOpcion,
+        value: j,
+        puntos: costes[j]
+      }).appendTo(`#sct${habilidades[i]}`);
+    }
+  }
+
+  let anteriores = {
+    "sctFuerza" : 8,
+    "sctDestreza" : 8,
+    "sctConstitución" : 8,
+    "sctInteligencia" : 8,
+    "sctSabiduría" : 8,
+    "sctCarisma" : 8
+  };
+  $(".sctHabilidad").change( (e) => {
+    let selected = $(e.target).val();
+
+    puntos += costes[anteriores[$(e.target).attr('id')]]-costes[selected];
+    if (puntos<0){
+      //mensaje de error
+      puntos -= costes[anteriores[$(e.target).attr('id')]]-costes[selected];
+      $(e.target).val(anteriores[$(e.target).attr('id')]);
+    } else {
+      anteriores[$(e.target).attr('id')] = selected;
+
+      $("#h4Puntuacion").remove();
+      $("<h4>", {
+        text: `${puntos}/27`,
+        id: "h4Puntuacion"
+      }).prependTo("#divHabilidades");
+
+      $(e.target).empty();
+
+      for (var j = 8; j<=15; j++){
+        if (j == selected){
+          $("<option>", {
+            text: j,
+            val: j,
+            puntos: costes[selected] - costes[j],
+            selected: true
+          }).appendTo($(e.target));
+        } else {
+          let diferencia = costes[selected] - costes[j];
+          if ( diferencia>0 ) {
+            diferencia = "+" +diferencia;
+          }
+          let textoOpcion = j + " (" + diferencia + " puntos)";
+          $("<option>", {
+            text: textoOpcion,
+            value: j,
+            puntos: costes[selected] - costes[j]
+          }).appendTo($(e.target));
+
+        }
+      }
+    }
+  });
+}
+
+function toggleHabilidades(){
+  if ($(".sctHabilidad").attr("disabled")){
+      $('.sctHabilidad').attr("disabled", false);
+  } else {
+      $('.sctHabilidad').attr("disabled", true);
+  }
 }
 
 function insertarSctTrasfondos(){
@@ -312,7 +443,7 @@ function insertarSctTrasfondos(){
         hidden: true,
         text: "Clica para ver los trasfondos"
     }).appendTo("#sctTrasfondo");
-    for (var trasfondo in trasfondos){        
+    for (var trasfondo in trasfondos){
         $('<option>', {
             value: trasfondo,
             text: trasfondos[trasfondo]['nombre']
@@ -324,7 +455,7 @@ function insertarSctTrasfondos(){
         if ($('#descripcionTrasfondo').length) {
             $('#descripcionTrasfondo').remove();
         }
-    
+
         $('<div>', {
             id: 'descripcionTrasfondo',
             class: 'descripcion'
@@ -332,13 +463,13 @@ function insertarSctTrasfondos(){
         $('<p>', {
             text: trasfondos[$(e.target).val()]["descripcion"]
         }).appendTo('#descripcionTrasfondo');
-            
+
     });
 }
 
 function toggleTrasfondo(){
     if ($('#sctTrasfondo').attr("disabled")){
-        $('#sctTrasfondo').attr("disabled", false);    
+        $('#sctTrasfondo').attr("disabled", false);
     } else {
         $('#sctTrasfondo').attr("disabled", true);
     }
@@ -350,7 +481,7 @@ function insertarSctIdiomas(){
         class: 'div divIdioma'
     }).insertBefore('.divBotonesNavegacion');
     var numIdiomas = conseguirNumeroIdiomas();
-    
+
     if (numIdiomas != 0) {
         var stringIdiomas = "idiomas";
         if (numIdiomas==1) {
@@ -360,7 +491,7 @@ function insertarSctIdiomas(){
             class: 'h4 h4Idioma',
             text: 'Escoge ' + numIdiomas + ' ' + stringIdiomas,
         }).appendTo("#divIdioma");
-        for (var idioma in idiomas){        
+        for (var idioma in idiomas){
             $("<input>", {
                 type: "checkbox",
                 name: idiomas[idioma]["nombre"],
@@ -391,7 +522,7 @@ function insertarSctIdiomas(){
 
 function toggleIdioma(){
     if ($('.ckbIdioma').attr("disabled")){
-        $('.ckbIdioma').attr("disabled", false);    
+        $('.ckbIdioma').attr("disabled", false);
     } else {
         $('.ckbIdioma').attr("disabled", true);
     }
