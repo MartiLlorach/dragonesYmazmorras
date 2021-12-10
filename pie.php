@@ -1,7 +1,7 @@
 <footer>
 
-  <div>
-    <h4>Contacta amb els desarrolladors:</h4>
+  <div id="contactaDesarrolladores">
+    <h4>Contacta con los desarrolladores:</h4>
     <a href="mailto:mllorachnaharro.cf@iesesteveterradas.cat">mllorachnaharro.cf@iesesteveterradas.cat</a>
     <a href="mailto:agomezorea.cf@iesesteveterradas.cat">agomezorea.cf@iesesteveterradas.cat</a>
     <a href="mailto:mpausarroyo.cf@iesesteveterradas.cat">mpausarroyo.cf@iesesteveterradas.cat</a>
@@ -19,7 +19,7 @@
   </div>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Z0H7MVQSJ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];

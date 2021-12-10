@@ -69,6 +69,11 @@ footer {
 	margin-top: 50px;
 }
 
+footer #contactaDesarrolladores{
+	display: flex;
+	flex-direction: column;
+}
+
 footer div{
 	width: 30%;
 	padding: 5px;
@@ -437,4 +442,3 @@ input[type=submit] {
 #crearFicha #contenedorHabilidades .sctHabilidad{
 	width: 5vw;
 }
-
