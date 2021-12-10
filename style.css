@@ -118,7 +118,44 @@ button:hover, input[type=submit]:hover{
 	top: 50px;
 }
 
+/* ESTILOS ALERTAS */
 
+.alerta{
+	position: fixed;
+	width: 15vw;
+	height: 15vh;
+	top: 25vh;
+	right: 42vw;
+	border: solid black 2px;
+}
+
+.alerta.mal {background-color: red;}
+.alerta.bien {background-color: #04AA6D;}
+.alerta.info {background-color: #2196F3;}
+.alerta.aviso {background-color: #ff9800;}
+
+.closebtn {
+  margin: 2% 2% 0% 0%;
+  color: black;
+  font-weight: bold;
+  float: right;
+  font-size: 40px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: white;
+}
+
+#alerta > p{
+	margin: 15% 0% 0% 5%;
+}
+
+#alerta > p > strong{
+	margin-right: 1%;
+}
 /* ESTILOS PAGINA INICIO */
 
 #paginaInicio {
