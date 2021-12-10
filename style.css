@@ -13,12 +13,18 @@
 
 
 /* ESTILOS GENERALES */
-
+html{
+	position: relative;
+	min-height: 100%
+}
 body {
 	background-image: url("imagenes/fondoLava.jpg");
 	background-size: cover;
 	background-color: var(--color6);
 	font-family: 'Open Sans', sans-serif;
+	margin: 0 0 212px;
+	display: block;
+	min-height: 100%;
 }
 
 h1, h2, h3{
@@ -36,8 +42,6 @@ button:hover, input[type=submit]:hover{
 	cursor: pointer;
 }
 
-/* ESTILOS ENCABEZADO */
-
 .titulo{
 	font-family: 'Eczar', serif;
 	color: var(--color2);
@@ -52,15 +56,55 @@ button:hover, input[type=submit]:hover{
 	margin: 10px;
 }
 
-#encabezado {
+footer {
+	background-color: var(--color5);
 	display: flex;
-	background-color: var(--color4);
+	justify-content: space-around;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	border-top: 2px solid var(--color4);
+	height: min-content;
+	margin-top: 50px;
+}
+
+footer div{
+	width: 30%;
+	padding: 5px;
+	text-align: center;
+}
+
+footer div:nth-child(2){
+	border-left: 1px solid var(--color6);
+	border-right: 1px solid var(--color6);
+}
+
+footer img{
+	width: 25vw;
+}
+
+footer a{
+	color: #FF8C40;
+}
+
+/* ESTILOS ENCABEZADO */
+
+#encabezado {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	display: flex;
+	background-color: var(--color5);
 	flex-direction: row;
   	flex-wrap: nowrap;
   	justify-content: space-between;
   	align-items: baseline;
 	padding: 0 10px;
-	margin-bottom: 20px;
+	margin: 8px 8px 20px;
+	border-radius: 5px;
+	border: 2px solid var(--color4);
+	z-index: 1000;
 }
 
 #encabezado button {
@@ -83,8 +127,8 @@ button:hover, input[type=submit]:hover{
   width: 150px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-	top: 67px;
-	right: 82px;
+  top: 59px;
+  right: 74px;
 }
 
 .encabezadoDesplegable a {
@@ -112,7 +156,44 @@ button:hover, input[type=submit]:hover{
 	top: 50px;
 }
 
+/* ESTILOS ALERTAS */
 
+.alerta{
+	position: fixed;
+	width: 15vw;
+	height: 15vh;
+	top: 25vh;
+	right: 42vw;
+	border: solid black 2px;
+}
+
+.alerta.mal {background-color: red;}
+.alerta.bien {background-color: #04AA6D;}
+.alerta.info {background-color: #2196F3;}
+.alerta.aviso {background-color: #ff9800;}
+
+.closebtn {
+  margin: 2% 2% 0% 0%;
+  color: black;
+  font-weight: bold;
+  float: right;
+  font-size: 40px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: white;
+}
+
+#alerta > p{
+	margin: 15% 0% 0% 5%;
+}
+
+#alerta > p > strong{
+	margin-right: 1%;
+}
 /* ESTILOS PAGINA INICIO */
 
 #paginaInicio {
@@ -166,13 +247,10 @@ button:hover, input[type=submit]:hover{
 }
 
 #crearCuenta {
+	display: block;
 	width: 300px;
 	height: 40px;
-	display:  flex;
-	justify-content: center;
-	align-items: flex-start;
-	margin: 10px;
-	align-items: center;
+	margin: 10px auto;
 	font-size: 20px;
 }
 
@@ -203,6 +281,7 @@ input[type=submit] {
 	 margin: 10px;
  }
 
+
 /* ESTILOS CREAR CUENTA */
 #paginaCrearCuenta {
 	display: flex;
@@ -226,10 +305,7 @@ input[type=submit] {
 #camposFormulario {
 	justify-content: flex-end;
 }
-/* **EXPANSIÓN DEL PLAZO FINAL + HABITACIÓN DISPONIBLE**
-Buenas tardes,
-Comunicamos la expansión del plazo de reservas hasta el miércoles día 15 a las 23:59 debido a que ya están las habitaciones completadas y solo aceptamos nuevas reservas para la cena
-*/
+
 
 #botonesFormulario {
 	display: flex;
@@ -243,3 +319,122 @@ Comunicamos la expansión del plazo de reservas hasta el miércoles día 15 a la
 
 	font-size: 20px;
 }
+
+/* ESTILOS LISTA FICHAS */
+#listaFichas .resumenFicha{
+	display: flex;
+	width: min-content;
+	margin: 10px auto;
+	background: var(--color4);
+	border-radius: 5px;
+	align-items: center;
+}
+
+#listaFichas .resumenBotones{
+	display: flex;
+	flex-direction: column;
+}
+
+#listaFichas .resumenFicha button{
+	margin: 2px 5px;
+}
+
+#listaFichas .resumenFicha .verFicha{
+	background-color: rgb(0, 100, 0);
+	color: var(--color6);
+}
+#listaFichas .resumenFicha .eliminarFicha{
+	background-color: rgb(200, 0, 0);
+	color: var(--color6);
+}
+#listaFichas .resumenFicha .verFicha:hover{
+	color: var(--color3);
+	background-color: rgb(0, 80, 0);
+}
+#listaFichas .resumenFicha .eliminarFicha:hover{
+	color: var(--color3);
+	background-color: rgb(180, 0, 0);
+}
+
+#listaFichas .resumenFicha .imgRaza{
+	width: auto;
+	height: 50px;
+	margin-left: 10px;
+}
+#listaFichas .resumenFicha p{
+	padding: 10px;
+}
+#listaFichas{
+	text-align: center;
+}
+
+/* ESTILOS CREACION DE PERSONAJE */
+#crearFicha {
+	text-align: center;
+}
+#crearFicha .div{
+	background-color: var(--color4);
+	width: max-content;
+	padding: 50px;
+	margin: 25px auto;
+	border-radius: 5px;
+}
+#crearFicha .divBotonesNavegacion{
+	padding: 10px;
+}
+#crearFicha .divBotonesNavegacion .btnAceptar:hover{
+	color: var(--color3);
+	background-color: rgb(0, 80, 0);
+}
+#crearFicha .divBotonesNavegacion .btnCancelar:hover{
+	color: var(--color3);
+	background-color: rgb(180, 0, 0);
+}
+#crearFicha .btnAceptar{
+	background-color: rgb(0, 100, 0);
+}
+#crearFicha .btnCancelar{
+	background-color: rgb(200, 0, 0);
+}
+#crearFicha .descripcion{
+	width: 1000px;
+	display: flex;
+	align-items: center;
+}
+.descripcion img{
+	width: 100px;
+	height: 100px;
+	margin: 10px;
+}
+#crearFicha #divRaza select, #crearFicha #divClase select, #crearFicha #divTrasfondo select{
+	margin: 5px;
+}
+#crearFicha .ckbIdioma:checked + label{
+	background-color: var(--color1);
+	border-radius: 5px;
+}
+#crearFicha #divIdioma label{
+	padding: 2px;
+}
+#crearFicha #divHabilidades{
+		display: flex;
+		flex-direction: column;
+}
+#crearFicha #contenedorHabilidades{
+	display: flex;
+  width: 40%;
+}
+#crearFicha #contenedorHabilidades .divHabilidad{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 5px;
+	border: 2px solid var(--color4);
+	background-color: var(--color5);
+	padding: 5px;
+	color: var(--color3);
+}
+#crearFicha #contenedorHabilidades .sctHabilidad{
+	width: 5vw;
+}
+

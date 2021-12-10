@@ -1,4 +1,5 @@
 <?php session_start() ?>
+  <link rel="icon" type="image/png" href="imagenes/favicon.png">
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script type="text/javascript" src="scripts/encabezado.js">
@@ -20,6 +21,8 @@
         <a href="#" id="cierraSesion">cierra sesión &nbsp<i class='fa fa-sign-out'></i></a>
       </div>
       <button type="button" class="boton botonCasa" id="botonCasa"><i class="fa fa-home"></i></button>
-      <?php } ?>
+    <?php } else if (!$banderaInicio){
+      header('Location: '.'paginaInicio.php');
+    }?>
     </div>
   </div>
