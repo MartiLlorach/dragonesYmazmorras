@@ -6,13 +6,13 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="scripts/crearFicha.js"></script>
 	<title>Crear Ficha</title>
-<?php 
+<?php
     include 'encabezado.php';
     include 'bbdd/bbddConexion.php';
     include 'bbdd/bbddFunciones.php';
-    conseguirRazas($pdo);      
+    conseguirRazas($pdo);
     conseguirClases($pdo);
-    conseguirTrasfondos($pdo);  
+    conseguirTrasfondos($pdo);
     conseguirIdiomas($pdo);
 ?>
     <div id="crearFicha">
@@ -21,5 +21,6 @@
             <button class = "btn btnCancelar"><p>Cancelar <i class="fa fa-times"></i></p></button>
         </div>
     </div>
+		<?php include 'pie.php' ?>
   </body>
 </html>

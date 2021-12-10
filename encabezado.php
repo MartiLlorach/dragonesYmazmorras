@@ -21,6 +21,8 @@
         <a href="#" id="cierraSesion">cierra sesión &nbsp<i class='fa fa-sign-out'></i></a>
       </div>
       <button type="button" class="boton botonCasa" id="botonCasa"><i class="fa fa-home"></i></button>
-      <?php } ?>
+    <?php } else if (!$banderaInicio){
+      header('Location: '.'paginaInicio.php');
+    }?>
     </div>
   </div>

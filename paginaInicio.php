@@ -6,10 +6,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script type="text/javascript" src="scripts/encabezado.js"></script>
 	<title>D&D Generador de fichas</title>
-<?php include 'encabezado.php'; ?>
-	
-	
-
+<?php
+	$banderaInicio = true;
+	include 'encabezado.php';
+?>
 	<div id="paginaInicio">
 		<div id="paginaInicioIzq">
 			<img src="imagenes/logoDnd.png">
@@ -40,5 +40,6 @@
 		</div>
 		<?php } ?>
 	</div>
+	<?php include 'pie.php' ?>
 </body>
 </html>

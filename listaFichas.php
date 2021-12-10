@@ -14,5 +14,6 @@
       include 'bbdd/bbddFunciones.php';
       conseguirFichas($_SESSION["usuario"],$pdo); //la funcion esta hay q arreglarla
     ?>
+		<?php include 'pie.php' ?>
   </body>
 </html>

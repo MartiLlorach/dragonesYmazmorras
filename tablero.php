@@ -12,5 +12,6 @@
 		<button id="botonCrearFicha">Crear ficha</button>
 		<button id="botonTestearFicha">Testear ficha</button>
 	</div>
+	<?php include 'pie.php' ?>
 </body>
 </html>

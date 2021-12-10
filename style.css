@@ -13,12 +13,18 @@
 
 
 /* ESTILOS GENERALES */
-
+html{
+	position: relative;
+	min-height: 100%
+}
 body {
 	background-image: url("imagenes/fondoLava.jpg");
 	background-size: cover;
 	background-color: var(--color6);
 	font-family: 'Open Sans', sans-serif;
+	margin: 0 0 212px;
+	display: block;
+	min-height: 100%;
 }
 
 h1, h2, h3{
@@ -50,6 +56,38 @@ button:hover, input[type=submit]:hover{
 	margin: 10px;
 }
 
+footer {
+	background-color: var(--color5);
+	display: flex;
+	justify-content: space-around;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	border-top: 2px solid var(--color4);
+	height: min-content;
+	margin-top: 50px;
+}
+
+footer div{
+	width: 30%;
+	padding: 5px;
+	text-align: center;
+}
+
+footer div:nth-child(2){
+	border-left: 1px solid var(--color6);
+	border-right: 1px solid var(--color6);
+}
+
+footer img{
+	width: 25vw;
+}
+
+footer a{
+	color: #FF8C40;
+}
+
 /* ESTILOS ENCABEZADO */
 
 #encabezado {
@@ -63,7 +101,7 @@ button:hover, input[type=submit]:hover{
   	justify-content: space-between;
   	align-items: baseline;
 	padding: 0 10px;
-	margin-bottom: 20px;
+	margin: 8px 8px 20px;
 	border-radius: 5px;
 	border: 2px solid var(--color4);
 	z-index: 1000;
