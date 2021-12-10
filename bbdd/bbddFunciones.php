@@ -1,4 +1,3 @@
-
 <?php
 function login($usuario, $contrasena, $oBbdd){
 
@@ -40,7 +39,7 @@ function usuarioCorrecto($oBbdd) {
       //anem agafant les fileres d'amb una amb una
       $row = $query->fetch();
       if($row){
-          echo "<p class=errorMsg>El nombre de usuario ya existe.</p>";
+          echo "<script>alerta('El nombre de usuario ya existe.','mal');</script>";
       }else{
         if (strcmp($_POST['nuevaContrasena'], $_POST['nuevaContrasena2']) === 0){
           $encriptedPwd = hash("sha256", $_POST["nuevaContrasena"]);
@@ -52,9 +51,10 @@ function usuarioCorrecto($oBbdd) {
           $query->bindParam(':fecha', $_POST['nacimiento']);
           $query->bindParam(':email', $_POST['nuevoCorreo']);
           $query->execute();
+          $_SESSION['creacion'] =true;
           header("Location: paginaInicio.php");
         }else{
-          echo "<p class=errorMsg>Las contraseñas no coinciden.</p>";
+          echo "<script>alerta('Las contraseñas no coinciden.','mal');</script>";
         }
       }
       //eliminem els objectes per alliberar memòria 

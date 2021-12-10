@@ -8,6 +8,10 @@
 <?php
 	$banderaInicio = true;
 	include 'encabezado.php';
+	if (isset($_SESSION['creacion'])){
+		echo "<script>alerta('Cuenta creada con éxito.','bien');</script>";
+		unset($_SESSION['creacion']);
+	}
 ?>
 	<div id="paginaInicio">
 		<div id="paginaInicioIzq">
