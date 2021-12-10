@@ -22,7 +22,6 @@ function login($usuario, $contrasena, $oBbdd){
     header('Location: '.'tablero.php');
   }else{
     echo "<script>alerta('Credenciales incorrectas','mal');</script>";
-    /*echo "    <div class='alert' <strong>Credenciales incorrectas</stong><span class='closebtn' onclick='this.parentElement.style.display='none';'>$timesx</span></div>";*/
   }
 
   unset($query);
