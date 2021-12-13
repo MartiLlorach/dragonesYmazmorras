@@ -165,8 +165,8 @@ footer a{
 
 .alerta{
 	position: fixed;
-	width: 15vw;
-	height: 15vh;
+	width: 20vw;
+	height: 20vh;
 	top: 25vh;
 	right: 42vw;
 	border: solid black 2px;
