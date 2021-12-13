@@ -29,13 +29,13 @@ function usuarioCorrecto($oBbdd) {
     //preparem i executem la consulta
       $query = $oBbdd->prepare("select * from usuarios where nombre= :user");
       $query->bindParam(':user', $_POST["nuevoUsuario"]);
-      $query->execute();      
+      $query->execute();
         //comprovo errors:
       $e= $query->errorInfo();
       if ($e[0]!='00000') {
         echo "\nPDO::errorInfo():\n";
         die("Error accedint a dades: " . $e[2]);
-      }  
+      }
       //anem agafant les fileres d'amb una amb una
       $row = $query->fetch();
       if($row){
@@ -57,8 +57,8 @@ function usuarioCorrecto($oBbdd) {
           echo "<script>alerta('Las contraseñas no coinciden.','mal');</script>";
         }
       }
-      //eliminem els objectes per alliberar memòria 
-      unset($pdo); 
+      //eliminem els objectes per alliberar memòria
+      unset($pdo);
       unset($query);
   }
 
@@ -85,10 +85,15 @@ function conseguirFichas($usuario, $oBbdd){
       echo "\nPDO::errorInfo():\n";
       die("Error accedint a dades: " . $ePrs[2]);
     } else {
+      $cont = 0;
       while ($rowPrs = $queryPrs->fetch()) {
           $raza = conseguirNombreTabla($rowPrs["raza"], "razas", $oBbdd);
           $clase = conseguirNombreTabla($rowPrs["clase"], "clases", $oBbdd);
           printarResumenFicha($rowPrs["nombre"],$raza,$clase);
+          $cont++;
+      }
+      if (!$cont) {
+        echo "<div class='noFichas'><h4>No tienes fichas</h4></div>";
       }
     }
 
@@ -153,7 +158,7 @@ function conseguirNombreTabla($id, $tabla, $oBbdd){
 
 function conseguirRazas($oBbdd){
   $razas = [];
-  
+
   $query = $oBbdd->prepare("select * from razas");
   $query->execute();
 
@@ -170,7 +175,7 @@ function conseguirRazas($oBbdd){
         'alineamiento' => $row['alineamiento'],
         'tamaño' => $row['tamaño'],
         'velocidad' => $row['velocidad'],
-        'idiomas_elegir' => $row['idiomas_elegir'] 
+        'idiomas_elegir' => $row['idiomas_elegir']
       ];
 
       if ($row['id_padre']) {
@@ -188,7 +193,7 @@ function conseguirRazas($oBbdd){
 
 function conseguirClases($oBbdd){
   $clases = [];
-  
+
   $query = $oBbdd->prepare("select * from clases");
   $query->execute();
 
@@ -201,7 +206,7 @@ function conseguirClases($oBbdd){
       $clases[$row['id']] = [
         'nombre' => $row['nombre'],
         'dado_de_golpe' => $row['dado_de_golpe'],
-        'idiomas_elegir' => $row['idiomas_elegir'], 
+        'idiomas_elegir' => $row['idiomas_elegir'],
         'riqueza_inicial' => $row['riqueza_inicial'],
         'descripcion' => $row['descripcion']
       ];
@@ -217,7 +222,7 @@ function conseguirClases($oBbdd){
 
 function conseguirTrasfondos($oBbdd){
   $trasfondos = [];
-  
+
   $query = $oBbdd->prepare("select * from trasfondos");
   $query->execute();
 
@@ -230,7 +235,7 @@ function conseguirTrasfondos($oBbdd){
       $trasfondos[$row['id']] = [
         'nombre' => $row['nombre'],
         'descripcion' => $row['descripcion'],
-        'idiomas_elegir' => $row['idiomas_elegir'] 
+        'idiomas_elegir' => $row['idiomas_elegir']
       ];
     }
     $jsonTrasfondos = json_encode($trasfondos);
@@ -244,7 +249,7 @@ function conseguirTrasfondos($oBbdd){
 
 function conseguirIdiomas($oBbdd){
   $idiomas = [];
-  
+
   $query = $oBbdd->prepare("select * from idiomas");
   $query->execute();
 

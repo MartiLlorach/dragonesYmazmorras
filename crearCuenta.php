@@ -25,12 +25,7 @@
 			<input type="password" id="nuevaContrasena2" name="nuevaContrasena2" placeholder="Contraseña" maxlength="10" required><br>
 		</div>
 		<div id="botonesFormulario">
-			<button id="salir" onclick="salir()">Salir</button>
-			<script>
-				function salir() {
-					window.location="paginaInicio.php";
-				}
-			</script>
+			<button id="salir" onclick="window.location='paginaInicio.php'">Salir</button>
 			<input type="submit" value="Registrarte">
 		</div>
 	</form>

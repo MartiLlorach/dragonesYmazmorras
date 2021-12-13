@@ -335,6 +335,15 @@ input[type=submit] {
 	align-items: center;
 }
 
+#listaFichas .noFichas{
+	width: max-content;
+	margin: 10px auto;
+	background: var(--color4);
+	border-radius: 5px;
+	align-items: center;
+	padding: 5px 20px;
+}
+
 #listaFichas .resumenBotones{
 	display: flex;
 	flex-direction: column;
