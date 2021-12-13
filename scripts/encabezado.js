@@ -18,6 +18,9 @@ function cambiarDespleglable(){
 
 function alerta(txt,tipo){
   //Creacion del div de la alerta y de la cruzeta que lo cierra.
+  if ($('#alerta')) {
+    $('#alerta').remove();
+  }
   $('body').append('<div id="alerta" class="alerta"> </div>');
   $('#alerta').append('<span class="closebtn" onclick="this.parentElement.remove();">&times;</span>');
 
