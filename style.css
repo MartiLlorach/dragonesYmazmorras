@@ -106,7 +106,7 @@ footer a{
   	justify-content: space-between;
   	align-items: baseline;
 	padding: 0 10px;
-	margin: 8px 8px 20px;
+	margin: 8px 8px 10px;
 	border-radius: 5px;
 	border: 2px solid var(--color4);
 	z-index: 1000;
@@ -118,6 +118,39 @@ footer a{
 	margin: 10px;
 	padding: 5px;
 	align-items: center;
+}
+
+#hilo {
+	display:  flex;
+	align-items: flex-start;
+	padding-left: 15px;
+}
+
+#linksAriadna {
+	background-color: var(--color5);
+	padding: 7px;
+	border-radius: 5px;
+	border: 2px solid var(--color4);
+}
+
+#gifDragon {
+	align-content: center;
+	max-width: 70px;
+	max-height: 70px;
+}
+
+#dragonInicio {
+	position: absolute;
+	left:  40%;
+	transition: left 93% 10s;
+  animation: movimientoDerecha 10s infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+@keyframes movimientoDerecha {
+  0% {left: 40%;}
+  100% {left: 93%;}
 }
 
 #botonUsuario{
