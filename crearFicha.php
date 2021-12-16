@@ -17,8 +17,8 @@
 ?>
     <div id="crearFicha">
         <div class="div divBotonesNavegacion">
-            <button class = "btn btnAceptar"><p>Aceptar <i class="fa fa-check"></i></p></button>
-            <button class = "btn btnCancelar"><p>Cancelar <i class="fa fa-times"></i></p></button>
+            <button class = "btn btnAceptar" accesskey="a"><p>Aceptar <i class="fa fa-check"></i></p></button>
+            <button class = "btn btnCancelar" accesskey="c"><p>Cancelar <i class="fa fa-times"></i></p></button>
         </div>
     </div>
 		<?php include 'pie.php' ?>
