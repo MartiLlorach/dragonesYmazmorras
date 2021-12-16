@@ -26,7 +26,7 @@
 		</div>
 		<div id="botonesFormulario">
 			<button id="salir" onclick="window.location='paginaInicio.php'" accesskey="s">Salir</button>
-			<input type="submit" value="Registrarte">
+			<input type="submit" value="Registrarte" accesskey="r">
 		</div>
 	</form>
 </div>

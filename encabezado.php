@@ -14,11 +14,11 @@
       <?php
         if (isset($_SESSION['usuario'])){
       ?>
-      <button type='button' class='boton botonUsuario' id='botonUsuario'>
+      <button type='button' class='boton botonUsuario' id='botonUsuario' accesskey="u">
         <?php echo $_SESSION['usuario']; ?> &nbsp<i class='fa fa-user'></i>
       </button>
       <div class="encabezadoDesplegable" id="encabezadoDesplegable">
-        <a href="#" id="cierraSesion">cierra sesión &nbsp<i class='fa fa-sign-out'></i></a>
+        <a href="#" id="cierraSesion" accesskey="s">cierra sesión &nbsp<i class='fa fa-sign-out'></i></a>
       </div>
       <button type="button" class="boton botonCasa" id="botonCasa" accesskey="t"><i class="fa fa-home"></i></button>
     <?php } else if (!$banderaInicio & !$banderaCrearCuenta){
