@@ -20,7 +20,7 @@
       <div class="encabezadoDesplegable" id="encabezadoDesplegable">
         <a href="#" id="cierraSesion" accesskey="s">cierra sesión &nbsp<i class='fa fa-sign-out'></i></a>
       </div>
-      <button type="button" class="boton botonCasa" id="botonCasa" accesskey="t"><i class="fa fa-home"></i></button>
+      <button type="button" class="boton botonCasa" id="botonCasa" accesskey="h"><i class="fa fa-home"></i></button>
     <?php } else if (!$banderaInicio & !$banderaCrearCuenta){
       header('Location: '.'paginaInicio.php');
     }?>
