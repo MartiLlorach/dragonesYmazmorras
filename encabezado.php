@@ -10,6 +10,11 @@
     <div>
       <h1 class='titulo'>Generador de fichas de D&D 5e</h1>
     </div>
+    <?php
+        if (!isset($_SESSION['usuario'])) {
+          echo "<div id='dragonInicio'><img id='gifDragon' src='imagenes/dragonAnimado.gif'/></div>";
+        }
+    ?>
     <div class="botonesEncabezado">
       <?php                
         if (isset($_SESSION['usuario'])){

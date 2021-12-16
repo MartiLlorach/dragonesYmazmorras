@@ -133,6 +133,26 @@ footer a{
 	border: 2px solid var(--color4);
 }
 
+#gifDragon {
+	align-content: center;
+	max-width: 70px;
+	max-height: 70px;
+}
+
+#dragonInicio {
+	position: absolute;
+	left:  40%;
+	transition: left 93% 10s;
+  animation: movimientoDerecha 10s infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+@keyframes movimientoDerecha {
+  0% {left: 40%;}
+  100% {left: 93%;}
+}
+
 #botonUsuario{
   position: relative;
   display: inline-block;
