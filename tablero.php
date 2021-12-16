@@ -8,9 +8,9 @@
 	<title>Tablero</title>
 <?php include 'encabezado.php'; ?>
 	<div id="menuTablero">
-		<button id="botonListadoFichas">Listado de fichas</button>
-		<button id="botonCrearFicha">Crear ficha</button>
-		<button id="botonTestearFicha">Testear ficha</button>
+		<button id="botonListadoFichas" accesskey="l">Listado de fichas</button>
+		<button id="botonCrearFicha" accesskey="c">Crear ficha</button>
+		<button id="botonTestearFicha" accesskey="t">Testear ficha</button>
 	</div>
 	<?php include 'pie.php' ?>
 </body>

@@ -31,7 +31,7 @@
 				<input type="submit" value="Entrar">
 				<a class="link"><u>¿Has olvidado la contraseña?</u></a>
 			</form>
-			<button id="crearCuenta" onclick="window.location='crearCuenta.php'">Crear una cuenta nueva</button>
+			<button id="crearCuenta" onclick="window.location='crearCuenta.php'" accesskey="c">Crear una cuenta nueva</button>
 			<?php
 				include 'bbdd/bbddConexion.php';
 				include 'bbdd/bbddFunciones.php';
