@@ -127,8 +127,10 @@ footer a{
 }
 
 #linksAriadna {
-	background-color: grey;
-	padding: 5px;
+	background-color: var(--color5);
+	padding: 7px;
+	border-radius: 5px;
+	border: 2px solid var(--color4);
 }
 
 #botonUsuario{

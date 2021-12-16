@@ -27,17 +27,19 @@
     </div>
   </div>
   <div id="hilo">
-    <div id="linksAriadna">
     <?php
         $urlActual = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $paginaActual=end(explode("/",$urlActual));
-        if ($paginaActual=="tablero.php") {
-          echo "<a href='tablero.php' class='link'>Tablero</a>";
-        } else if ($paginaActual=="crearFicha.php") {
-          echo "<a href='tablero.php' class='link'>Tablero</a>/<a href='crearFicha.php' class='link'>Crear Ficha</a>";
-        } else if ($paginaActual=="listaFichas.php") {
-          echo "<a href='tablero.php' class='link'>Tablero</a>/<a href='listaFichas.php' class='link'>Listar Fichas</a>";
+        if ($paginaActual!="paginaInicio.php") {
+          echo "<div id='linksAriadna'>";
+          if ($paginaActual=="tablero.php") {
+            echo "<a href='tablero.php' class='link'>Tablero</a>";
+          } else if ($paginaActual=="crearFicha.php") {
+            echo "<a href='tablero.php' class='link'>Tablero</a> > <a href='crearFicha.php' class='link'>Crear Ficha</a>";
+          } else if ($paginaActual=="listaFichas.php") {
+            echo "<a href='tablero.php' class='link'>Tablero</a> > <a href='listaFichas.php' class='link'>Listar Fichas</a>";
+          }
+          echo "</div>";
         }
       ?>
-    </div>
   </div>
