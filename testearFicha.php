@@ -10,12 +10,18 @@
 	include 'bbdd/bbddConexion.php';
 	include 'bbdd/bbddFunciones.php';
 	if ($_POST['personaje']){
+		[$nombre,$jugador,$jugador_nombre,$raza,$clase,$trasfondo,$vida_maxima,$vida_currente,$avatar,$fuerza,$destreza,$constitucion,$inteligencia,$sabiduria,$carisma,$idiomas] = conseguirAtributos($_POST['personaje'],$pdo);
+		if ($avatar){
+			$ruta = $avatar;
+		} else {
+			$ruta = 'imagenes/razas/Semiorco.jpeg';
+		}
 		echo "
 		<div id='menuTestear'>
 			<div class='tuFicha'>
-				<img src='imagenes/razas/Semiorco.jpeg' alt='avatar'>
-				<h1>Juan</h1>
-				<personaje fuerza=12 destreza=12 constitucion=12 inteligencia=12 sabiduria=12 carisma=12 hidden>
+				<img src=$ruta alt='avatar'>
+				<h1>$nombre</h1>
+				<personaje fuerza=$fuerza destreza=$destreza constitucion=$constitucion inteligencia=$inteligencia sabiduria=$sabiduria carisma=$carisma hidden>
 			</div>
 			<div class='botones'>
 				<button type='button' id='btnfuerza'>Fuerza</button>
