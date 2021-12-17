@@ -62,9 +62,12 @@ footer {
 	justify-content: space-around;
 	position: absolute;
 	bottom: 0;
-	left: 0;
-	width: 100%;
-	border-top: 2px solid var(--color4);
+	left: 50%;
+  transform: translate(-50%, 50%);
+	width: 98%;
+	border: 2px solid var(--color4);
+	border-bottom: 0;
+	border-radius: 5px;
 	height: min-content;
 	margin-top: 50px;
 }
@@ -483,4 +486,149 @@ input[type=submit] {
 }
 #crearFicha #contenedorHabilidades .sctHabilidad{
 	width: 5vw;
+}
+
+
+/* ESTILOS VISUALIZACION FICHA */
+#ficha{
+	background-color: var(--color3);
+	border: 2px solid var(--color5);
+	width: 70%;
+	margin: auto;
+	padding: 5px;
+}
+#ficha .encabezadoFicha{
+	display: flex;
+	justify-content: space-evenly;
+  align-items: center;
+}
+#ficha .encabezadoFicha h1{
+	margin: 0;
+}
+#ficha .nombreDiv{
+	width:100%;
+	border-right: 1px solid var(--color6);
+	text-align: center;
+	height: max-content;
+	display: flex;
+	justify-content: space-evenly;
+}
+#ficha .nombreDiv h1{
+	margin: auto 0;
+}
+#ficha .nombreDiv img{
+	width: 100px;
+	height: 100px;
+}
+#ficha .caracteristicasDiv{
+	width:100%;
+	text-align: center;
+}
+#ficha .cuerpoFicha{
+	display: flex;
+	justify-content: space-around;
+}
+#ficha .cuerpoFicha>div{
+
+}
+
+#ficha .puntuacionHabilidades{
+	display: flex;
+	flex-direction: column;
+	margin: 5px;
+	width: min-content;
+}
+#ficha .puntuacionHabilidades div{
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	margin-bottom: 2px;
+	padding: 5px 3px;
+	border-radius: 5px;
+	background-color: var(--color4);
+}
+#ficha .puntuacionHabilidades div *{
+	margin-top: 0;
+	margin-bottom: 0;
+}
+#ficha .habilidades{
+	display: flex;
+	flex-direction: column;
+	margin: 5px;
+	width: max-content;
+}
+#ficha .habilidades>div {
+	border-radius: 5px;
+	background-color: var(--color4);
+	padding: 2.85px 3px;
+	margin: 1px;
+}
+#ficha .habilidades div *{
+	display: inline;
+}
+#ficha .habilidades div h4{
+	width: 20px;
+}
+#ficha .habilidades .gris{
+	color: var(--color5);
+}
+#ficha .combate{
+	margin: auto 0;
+}
+#ficha .infoCombate{
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	margin: 5px;
+	width: min-content;
+}
+#ficha .infoCombate .row>div{
+	text-align: center;
+	border-radius: 5px;
+	background-color: var(--color4);
+	width: 150px;
+  height: 51px;
+  padding: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+#ficha .infoCombate div *{
+	margin: 0;
+	padding: 0;
+}
+#ficha .infoCombate .row{
+	display: flex;
+	width: max-content;
+	height: max-content;
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+#ficha .salvaciones{
+	font-size: 12px;
+}
+#ficha .ataques, #ficha .equipamiento{
+	text-align: -webkit-center;
+  margin: 20px auto;
+}
+#ficha table{
+	margin: 0;
+}
+#ficha .ataques h4, #ficha .equipamiento h4{
+	margin: 0;
+}
+#ficha td, #ficha th{
+	padding: 5px;
+}
+#ficha th{
+	font-size: 20px;
+	border-radius: 5px;
+	background-color: var(--color4);
+}
+#ficha td{
+	background-color: var(--color4);
+	border-radius: 5px;
+}
+#ficha table{
+	text-align: center;
 }

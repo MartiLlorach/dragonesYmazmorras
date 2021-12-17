@@ -89,7 +89,7 @@ function conseguirFichas($usuario, $oBbdd){
       while ($rowPrs = $queryPrs->fetch()) {
           $raza = conseguirNombreTabla($rowPrs["raza"], "razas", $oBbdd);
           $clase = conseguirNombreTabla($rowPrs["clase"], "clases", $oBbdd);
-          printarResumenFicha($rowPrs["nombre"],$raza,$clase);
+          printarResumenFicha($rowPrs["nombre"], $raza, $clase, $oBbdd);
           $cont++;
       }
       if (!$cont) {
@@ -102,25 +102,37 @@ function conseguirFichas($usuario, $oBbdd){
   }
 }
 
-function printarResumenFicha($nombre, $raza, $clase){
-  $src ="";
-  switch ($raza) {
-    case 'Humano':
-      $src = "imagenes/razas/Humano.jpeg";
-      break;
-    case 'Semielfo':
-      $src = 'imagenes/razas/Semielfo.jpeg';
-      break;
-    case 'Semiorco':
-      $src = 'imagenes/razas/Semiorco.jpeg';
-      break;
-    case 'Tiflin':
-      $src = 'imagenes/razas/Tiflin.jpeg';
-      break;
-    case 'Alto Elfo':
-      $src = 'imagenes/razas/AltoElfo.jpeg';
-      break;
+function printarResumenFicha($nombre, $raza, $clase, $oBbdd){
+
+  $query = $oBbdd->prepare("select id from usuarios where nombre='$_SESSION[usuario]'");
+  $query->execute();
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
   }
+  $row = $query->fetch();
+  $jugador = $row["id"];
+
+  unset($query);
+
+
+  $query = $oBbdd->prepare("select id from personajes where nombre='$nombre' and jugador=$jugador");
+
+  $query->execute();
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  }
+  $row = $query->fetch();
+  $personaje_id = $row["id"];
+
+  unset($query);
+
+  $src ="";
+  $src = 'imagenes/razas/'.$raza.'.jpeg';
+
   echo "
   <div class='resumenFicha'>
     <img class='imgRaza' src=$src></img>
@@ -128,7 +140,9 @@ function printarResumenFicha($nombre, $raza, $clase){
     <p>$raza</p>
     <p>$clase</p>
     <div class='resumenBotones'>
-      <button class='verFicha'><i class='fa fa-eye'></i></button>
+      <form method=post action=ficha.php>
+      <button class='verFicha' name='personaje' value=$personaje_id ><i class='fa fa-eye'></i></button>
+      </form>
       <button class='eliminarFicha'><i class='fa fa-trash'></i></button>
     </div>
   </div>
@@ -271,5 +285,543 @@ function conseguirIdiomas($oBbdd){
 
   }
   unset($query);
+}
+
+function conseguirArmas($oBbdd){
+  $armas = [];
+
+  $query = $oBbdd->prepare("select * from armas");
+  $query->execute();
+
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  } else {
+    while ($row = $query -> fetch()) {
+      $armas[$row['id']] = [
+        'nombre' => $row['nombre'],
+        'daño' => $row['daño'],
+        'daño_tipo' => $row['daño_tipo'],
+        'peso' => $row['peso']
+      ];
+    }
+    $jsonArmas = json_encode($armas);
+    echo "
+      <script> definirArmas((" . $jsonArmas . ")) </script>
+    ";
+
+  }
+  unset($query);
+}
+
+function conseguirArmaduras($oBbdd){
+  $armaduras = [];
+
+  $query = $oBbdd->prepare("select * from armadurasyescudos");
+  $query->execute();
+
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  } else {
+    while ($row = $query -> fetch()) {
+      $armaduras[$row['id']] = [
+        'nombre' => $row['nombre'],
+        'tipo' => $row['tipo'],
+        'clase_de_armadura' => $row['clase_de_armadura'],
+        'clase_de_armadura_bonus' => $row['clase_de_armadura_bonus'],
+        'clase_de_armadura_bonus_max' => $row['clase_de_armadura_bonus_max'],
+        'peso' => $row['peso']
+      ];
+    }
+    $jsonArmaduras = json_encode($armaduras);
+    echo "
+      <script> definirArmaduras((" . $jsonArmaduras . ")) </script>
+    ";
+
+  }
+  unset($query);
+}
+
+function conseguirObjetos($oBbdd){
+  $objetos = [];
+
+  $query = $oBbdd->prepare("select * from objetos");
+  $query->execute();
+
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  } else {
+    while ($row = $query -> fetch()) {
+      $objetos[$row['id']] = [
+        'nombre' => $row['nombre'],
+        'descripcion' => $row['descripcion'],
+        'peso' => $row['peso']
+      ];
+    }
+    $jsonObjetos = json_encode($objetos);
+    echo "
+      <script> definirObjetos((" . $jsonObjetos . ")) </script>
+    ";
+
+  }
+  unset($query);
+}
+
+function conseguirEquipamientoClases($oBbdd){
+  $equipamientoClase = [];
+
+  $query = $oBbdd->prepare("select * from equipamientoclase");
+  $query->execute();
+
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  } else {
+    while ($row = $query -> fetch()) {
+      $equipamientoClase[$row['id_clase']] = [
+        'id_arma' => $row['id_arma'],
+        'id_objeto' => $row['id_objeto'],
+        'id_armaduraOEscudo' => $row['id_armaduraOEscudo']
+      ];
+    }
+    $jsonEquipamientoClase = json_encode($equipamientoClase);
+    echo "
+      <script> definirEquipamientoClase((" . $jsonEquipamientoClase . ")) </script>
+    ";
+
+  }
+  unset($query);
+}
+
+function inicializarVariables($oBbdd){
+  conseguirRazas($oBbdd);
+  conseguirClases($oBbdd);
+  conseguirTrasfondos($oBbdd);
+  conseguirIdiomas($oBbdd);
+  conseguirArmas($oBbdd);
+  conseguirArmaduras($oBbdd);
+  conseguirObjetos($oBbdd);
+  conseguirEquipamientoClases($oBbdd);
+}
+
+function insertarPersonaje(
+  $oBbdd, $nombre, $clase, $raza, $fuerza, $destreza, $constitucion, $inteligencia, $sabiduria, $carisma, $trasfondo, $idiomas){
+
+  $query = $oBbdd->prepare("select id from usuarios where nombre='$_SESSION[usuario]'");
+  $query->execute();
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  }
+  $row = $query->fetch();
+  $jugador = $row["id"];
+
+  unset($query);
+
+
+  $dado = 10;
+
+  $query = $oBbdd->prepare("select dado_de_golpe from clases where id=$clase");
+  $query->execute();
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  }
+  $row = $query->fetch();
+  $dado = $row["dado_de_golpe"];
+  $string = explode("d", $dado);
+  $dado = $string[1];
+
+  unset($query);
+
+
+  $query = $oBbdd->prepare("insert into personajes
+  (id, nombre, jugador, raza, clase, trasfondo, vida_maxima, vida_currente, avatar)
+  VALUES(null, '$nombre', $jugador, $raza, $clase, $trasfondo, $dado, $dado, null)");
+
+  $query->execute();
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  }
+
+  unset($query);
+
+
+  $query = $oBbdd->prepare("select id from personajes where nombre='$nombre' and jugador=$jugador");
+  $query->execute();
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  }
+  $row = $query->fetch();
+  $id_personaje = $row["id"];
+
+  unset($query);
+
+
+  $query = $oBbdd->prepare("insert into habilidadespersonaje
+  (id_personaje, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+  VALUES($id_personaje, $fuerza, $destreza, $constitucion, $inteligencia, $sabiduria, $carisma)");
+
+  $query->execute();
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  }
+
+  unset($query);
+
+  foreach ($idiomas as $idioma) {
+    $query = $oBbdd->prepare("insert into idiomaspersonaje
+    (id_idioma, id_personaje)
+    VALUES($idioma, $id_personaje)");
+
+    $query->execute();
+    $e= $query->errorInfo();
+    if ($e[0]!='00000') {
+      echo "\nPDO::errorInfo():\n";
+      die("Error accedint a dades: " . $e[2]);
+
+    }
+    unset($query);
+  }
+
+  return $id_personaje;
+}
+
+function conseguirAtributos($id_personaje, $oBbdd){
+
+  $query = $oBbdd->prepare("select * from personajes where id=$id_personaje");
+
+  $query->execute();
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  }
+  $row = $query->fetch();
+  $nombre = $row["nombre"];
+  $jugador = $row["jugador"];
+  $raza = $row["raza"];
+  $clase = $row["clase"];
+  $trasfondo = $row["trasfondo"];
+  $vida_maxima = $row["vida_maxima"];
+  $vida_currente = $row["vida_currente"];
+  $avatar = $row["avatar"];
+
+  unset($query);
+
+
+  $query = $oBbdd->prepare("select * from habilidadespersonaje where id_personaje=$id_personaje");
+
+  $query->execute();
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  }
+  $row = $query->fetch();
+  $fuerza = $row["fuerza"];
+  $destreza = $row["destreza"];
+  $constitucion = $row["constitucion"];
+  $inteligencia = $row["inteligencia"];
+  $sabiduria = $row["sabiduria"];
+  $carisma = $row["carisma"];
+
+  unset($query);
+
+  $query = $oBbdd->prepare("select * from idiomaspersonaje where id_personaje=$id_personaje");
+  $query->execute();
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  }
+  $idiomas = [];
+  while ($row = $query -> fetch()) {
+    array_push($idiomas, $row["id_idioma"]);
+  }
+
+  unset($query);
+
+  $query = $oBbdd->prepare("select * from usuarios where id=$jugador");
+  $query->execute();
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  }
+  $row = $query -> fetch();
+  $jugador_nombre = $row["nombre"];
+
+  unset($query);
+
+  return [$nombre,$jugador,$jugador_nombre,$raza,$clase,$trasfondo,$vida_maxima,$vida_currente,$avatar,$fuerza,$destreza,$constitucion,$inteligencia,$sabiduria,$carisma,$idiomas];
+}
+
+function conseguirRaza($oBbdd, $id_raza){
+  $query = $oBbdd->prepare("select * from razas where id = $id_raza");
+  $query->execute();
+
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  } else {
+    $row = $query -> fetch();
+    $raza = [
+      'id' => $row['id'],
+      'nombre' => $row['nombre'],
+      'descripcion' => $row['descripcion'],
+      'edad' => $row['edad'],
+      'alineamiento' => $row['alineamiento'],
+      'tamaño' => $row['tamaño'],
+      'velocidad' => $row['velocidad'],
+      'idiomas_elegir' => $row['idiomas_elegir']
+      ];
+
+      if ($row['id_padre']) {
+        $raza[$row['id']]['id_padre'] = $row['id_padre'];
+      }
+    }
+    return $raza;
+
+  unset($query);
+}
+
+function conseguirClase($oBbdd, $id_clase){
+  $query = $oBbdd->prepare("select * from clases where id = $id_clase");
+  $query->execute();
+
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  } else {
+    $row = $query -> fetch();
+    $clase = [
+      'id' => $row['id'],
+      'nombre' => $row['nombre'],
+      'dado_de_golpe' => $row['dado_de_golpe'],
+      'idiomas_elegir' => $row['idiomas_elegir'],
+      'riqueza_inicial' => $row['riqueza_inicial'],
+      'descripcion' => $row['descripcion']
+    ];
+
+    return $clase;
+  }
+  unset($query);
+}
+
+function conseguirTrasfondo($oBbdd, $id_trasfondo){
+
+  $query = $oBbdd->prepare("select * from trasfondos where id = $id_trasfondo");
+  $query->execute();
+
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  } else {
+    $row = $query -> fetch();
+    $trasfondo = [
+      'id' => $row['id'],
+      'nombre' => $row['nombre'],
+      'descripcion' => $row['descripcion'],
+      'idiomas_elegir' => $row['idiomas_elegir']
+    ];
+
+    return $trasfondo;
+
+  }
+  unset($query);
+}
+
+function conseguirIdiomasF($oBbdd){
+  $idiomas = [];
+
+  $query = $oBbdd->prepare("select * from idiomas");
+  $query->execute();
+
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  } else {
+    while ($row = $query -> fetch()) {
+      $idiomas[$row['id']] = [
+        'nombre' => $row['nombre'],
+        'escritura' => $row['escritura']
+      ];
+    }
+    return $idiomas;
+  }
+  unset($query);
+}
+
+function conseguirArmasF($oBbdd){
+  $armas = [];
+
+  $query = $oBbdd->prepare("select * from armas");
+  $query->execute();
+
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  } else {
+    while ($row = $query -> fetch()) {
+      $armas[$row['id']] = [
+        'nombre' => $row['nombre'],
+        'daño' => $row['daño'],
+        'daño_tipo' => $row['daño_tipo'],
+        'peso' => $row['peso']
+      ];
+    }
+    return $armas;
+  }
+  unset($query);
+}
+
+function conseguirArmadurasF($oBbdd){
+  $armaduras = [];
+
+  $query = $oBbdd->prepare("select * from armadurasyescudos");
+  $query->execute();
+
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  } else {
+    while ($row = $query -> fetch()) {
+      $armaduras[$row['id']] = [
+        'nombre' => $row['nombre'],
+        'tipo' => $row['tipo'],
+        'clase_de_armadura' => $row['clase_de_armadura'],
+        'clase_de_armadura_bonus' => $row['clase_de_armadura_bonus'],
+        'clase_de_armadura_bonus_max' => $row['clase_de_armadura_bonus_max'],
+        'peso' => $row['peso']
+      ];
+    }
+    return $armaduras;
+
+  }
+  unset($query);
+}
+
+function conseguirObjetosF($oBbdd){
+  $objetos = [];
+
+  $query = $oBbdd->prepare("select * from objetos");
+  $query->execute();
+
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  } else {
+    while ($row = $query -> fetch()) {
+      $objetos[$row['id']] = [
+        'nombre' => $row['nombre'],
+        'descripcion' => $row['descripcion'],
+        'peso' => $row['peso']
+      ];
+    }
+    return $objetos;
+
+  }
+  unset($query);
+}
+
+function conseguirEquipamientoClase($oBbdd, $id_clase){
+  $equipamientoClase = [];
+
+  $query = $oBbdd->prepare("select * from equipamientoclase where id_clase=$id_clase");
+  $query->execute();
+
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  } else {
+    $row = $query -> fetch();
+    $equipamientoClase = [
+      'id_arma' => $row['id_arma'],
+      'id_objeto' => $row['id_objeto'],
+      'id_armaduraOEscudo' => $row['id_armaduraOEscudo']
+    ];
+
+    return $equipamientoClase;
+
+  }
+  unset($query);
+}
+
+function conseguirConjurosClase($oBbdd, $id_clase){
+  $conjuros = [];
+
+  $query = $oBbdd->prepare("select * from conjurosclase where id_clase=$id_clase");
+  $query->execute();
+
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  } else {
+    while($row = $query -> fetch()){
+      array_push($conjuros, $row["id_conjuro"]);
+    }
+
+    return $conjuros;
+
+  }
+  unset($query);
+}
+
+function conseguirConjuros($oBbdd){
+  $conjuros = [];
+
+  $query = $oBbdd->prepare("select * from conjuros");
+  $query->execute();
+
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  } else {
+    while($row = $query -> fetch()){
+      $conjuros[$row["id"]] = [
+        'nombre' => $row['nombre'],
+        'nivel' => $row['nivel'],
+        'descripcion' => $row['descripcion']
+      ];
+    }
+
+    return $conjuros;
+
+  }
+  unset($query);
+}
+
+function modificador($puntuacion){
+  $mod = floor(($puntuacion-10)/2);
+  if ($mod>0) return "+".$mod;
+  else return $mod;
+}
+function modificadorInt($puntuacion){
+  return floor(($puntuacion-10)/2);
 }
 ?>
