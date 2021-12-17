@@ -89,7 +89,7 @@ function conseguirFichas($usuario, $oBbdd){
       while ($rowPrs = $queryPrs->fetch()) {
           $raza = conseguirNombreTabla($rowPrs["raza"], "razas", $oBbdd);
           $clase = conseguirNombreTabla($rowPrs["clase"], "clases", $oBbdd);
-          printarResumenFicha($rowPrs["nombre"],$raza,$clase);
+          printarResumenFicha($rowPrs["id"], $rowPrs["nombre"],$raza,$clase,$rowPrs["avatar"]);
           $cont++;
       }
       if (!$cont) {
@@ -102,28 +102,33 @@ function conseguirFichas($usuario, $oBbdd){
   }
 }
 
-function printarResumenFicha($nombre, $raza, $clase){
-  $src ="";
-  switch ($raza) {
-    case 'Humano':
-      $src = "imagenes/razas/Humano.jpeg";
-      break;
-    case 'Semielfo':
-      $src = 'imagenes/razas/Semielfo.jpeg';
-      break;
-    case 'Semiorco':
-      $src = 'imagenes/razas/Semiorco.jpeg';
-      break;
-    case 'Tiflin':
-      $src = 'imagenes/razas/Tiflin.jpeg';
-      break;
-    case 'Alto Elfo':
-      $src = 'imagenes/razas/AltoElfo.jpeg';
-      break;
+function printarResumenFicha($id, $nombre, $raza, $clase, $avatar){
+  
+  if ($avatar==null) {
+    $src ="";
+    switch ($raza) {
+      case 'Humano':
+        $src = "imagenes/razas/Humano.jpeg";
+        break;
+      case 'Semielfo':
+        $src = 'imagenes/razas/Semielfo.jpeg';
+        break;
+      case 'Semiorco':
+        $src = 'imagenes/razas/Semiorco.jpeg';
+        break;
+      case 'Tiflin':
+        $src = 'imagenes/razas/Tiflin.jpeg';
+        break;
+      case 'Alto Elfo':
+        $src = 'imagenes/razas/AltoElfo.jpeg';
+        break;
+    }
+  } else {
+    $src = $avatar;
   }
   echo "
   <div class='resumenFicha'>
-    <img class='imgRaza' src=$src></img>
+    <img class='imgRaza' src=$src onclick='importarImagen($id)'/>
     <p>$nombre</p>
     <p>$raza</p>
     <p>$clase</p>
@@ -272,4 +277,9 @@ function conseguirIdiomas($oBbdd){
   }
   unset($query);
 }
+function subirAvatar($urlAvatar, $oBbdd) {
+  $query = $oBbdd->prepare("UPDATE personajes SET avatar = '$urlAvatar'");
+  $query->execute();
+}
 ?>
+

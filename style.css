@@ -195,6 +195,15 @@ footer a{
 }
 
 /* ESTILOS ALERTAS */
+#importar {
+	position: fixed;
+	width: 20vw;
+	height: 20vh;
+	top: 25vh;
+	right: 42vw;
+	border: solid black 2px;	
+}
+
 
 .alerta{
 	position: fixed;
