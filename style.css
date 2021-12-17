@@ -451,3 +451,23 @@ input[type=submit] {
 #crearFicha #contenedorHabilidades .sctHabilidad{
 	width: 5vw;
 }
+
+
+/* ESTILOS VISUALIZACION FICHA */
+#ficha{
+	background-color: var(--color3);
+	border: 2px solid var(--color5);
+	width: 70%;
+	margin: auto;
+}
+#ficha .encabezadoFicha{
+	display: flex;
+	justify-content: space-evenly;
+  align-items: center;
+}
+#ficha .nombreDiv{
+
+}
+#ficha .caracteristicasDiv{
+
+}

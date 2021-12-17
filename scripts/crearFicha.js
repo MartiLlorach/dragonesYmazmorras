@@ -25,6 +25,22 @@ var idiomas;
 function definirIdiomas(idiomasBbdd){
     idiomas = idiomasBbdd;
 }
+var armas;
+function definirArmas(armasBbdd){
+    armas = armasBbdd;
+}
+var armaduras;
+function definirArmaduras(armadurasBbdd){
+    armaduras = armadurasBbdd;
+}
+var objetos;
+function definirObjetos(objetosBbdd){
+    objetos = objetosBbdd;
+}
+var equipamientoClase;
+function definirEquipamientoClase(equipamientoClaseBdd){
+    equipamientoClase = equipamientoClaseBdd;
+}
 
 function aceptarClick(){
     var count = ($('#crearFicha').children().length) - 1;
@@ -67,6 +83,12 @@ function aceptarClick(){
             break;
         case 6:
             toggleIdioma();
+            insertarEquipamiento();
+            break;
+        case 7:
+            $("input").removeAttr("disabled");
+            $("select").removeAttr("disabled");
+            $("#formFicha").submit();
             break;
     }
 }
@@ -96,6 +118,10 @@ function cancelarClick(){
             $("#divIdioma").remove();
             toggleTrasfondo();
             break;
+        case 7:
+            $("#divEquipamiento").remove();
+            toggleIdioma();
+            break;
     }
 
 }
@@ -114,7 +140,8 @@ function insertarInpNombre(){
     }).appendTo('#divNombrePersonaje');
     $('<input>', {
         id: 'InpNombrePersonaje',
-        class: 'inp inpNombre'
+        class: 'inp inpNombre',
+        name: 'nombre'
     }).appendTo('#divNombrePersonaje');
 }
 function toggleNombre(){
@@ -338,7 +365,8 @@ function insertarSctHabilidades(){
     }).appendTo(`#div${habilidades[i]}`);
     $("<select>", {
       class: "sctHabilidad",
-      id: `sct${habilidades[i]}`
+      id: `sct${habilidades[i]}`,
+      name: `sct${habilidades[i]}`
     }).appendTo(`#div${habilidades[i]}`);
     $("<option>", {
       text: 8,
@@ -494,8 +522,9 @@ function insertarSctIdiomas(){
         for (var idioma in idiomas){
             $("<input>", {
                 type: "checkbox",
-                name: idiomas[idioma]["nombre"],
+                name: "idiomas[]",
                 id: idiomas[idioma]["nombre"],
+                value: idioma,
                 class: "ckbIdioma"
             }).appendTo("#divIdioma");
             $("<label>", {
@@ -545,4 +574,37 @@ function conseguirNumeroIdiomas(){
     numIdiomas += parseInt(trasfondos[trasfondo]["idiomas_elegir"]);
 
     return numIdiomas;
+}
+
+function insertarEquipamiento(){
+    $('<div>', {
+        id: 'divEquipamiento',
+        class: 'div divEquipamiento'
+    }).insertBefore('.divBotonesNavegacion');
+
+    $('<h4>', {
+      text: "Equipamiento:"
+    }).appendTo("#divEquipamiento");
+
+    let equipamiento = "";
+    if (equipamientoClase[$("#sctClase").val()]["id_arma"]){
+      equipamiento += armas[equipamientoClase[$("#sctClase").val()]["id_arma"]]["nombre"] + ", ";
+    }
+    if (equipamientoClase[$("#sctClase").val()]["id_armaduraOEscudo"]){
+      equipamiento += armaduras[equipamientoClase[$("#sctClase").val()]["id_armaduraOEscudo"]]["nombre"] + ", ";
+    }
+    if (equipamientoClase[$("#sctClase").val()]["id_objeto"]){
+      equipamiento += objetos[equipamientoClase[$("#sctClase").val()]["id_objeto"]]["nombre"] + ", ";
+    }
+
+    equipamiento = equipamiento.trim();
+    equipamiento = equipamiento.slice(0, -1);
+
+    $('<p>', {
+      text: equipamiento
+    }).appendTo('#divEquipamiento');
+}
+
+function finalizar(){
+  console.log("finalizar");
 }
