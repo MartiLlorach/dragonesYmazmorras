@@ -746,7 +746,7 @@ function conseguirEquipamientoClase($oBbdd, $id_clase){
     die("Error accedint a dades: " . $e[2]);
   } else {
     $row = $query -> fetch();
-    $equipamientoClase[$row['id_clase']] = [
+    $equipamientoClase = [
       'id_arma' => $row['id_arma'],
       'id_objeto' => $row['id_objeto'],
       'id_armaduraOEscudo' => $row['id_armaduraOEscudo']
@@ -758,4 +758,12 @@ function conseguirEquipamientoClase($oBbdd, $id_clase){
   unset($query);
 }
 
+function modificador($puntuacion){
+  $mod = floor(($puntuacion-10)/2);
+  if ($mod>0) return "+".$mod;
+  else return $mod;
+}
+function modificadorInt($puntuacion){
+  return floor(($puntuacion-10)/2);
+}
 ?>
