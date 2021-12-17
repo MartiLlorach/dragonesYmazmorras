@@ -48,7 +48,7 @@
     <div class="encabezadoFicha">
       <div class="nombreDiv">
 				<?php if ($avatar) {
-					echo "<img src='$avatar' alt='avatar'>";
+					echo "<img src='imagenes/avatares/$avatar' alt='avatar'>";
 				} else {
 					echo "<img src='imagenes/razas/".$razaCompleta['nombre'].".jpeg' alt='avatar'>";
 				} ?>
@@ -56,10 +56,10 @@
         <h1><?php echo $nombre ?></h1>
       </div>
       <div class="caracteristicasDiv">
-        <p>Clase: <?php echo $claseCompleta["nombre"] ?></p>
-        <p>Jugador: <?php echo $jugador_nombre ?></p>
-        <p>Raza: <?php echo $razaCompleta["nombre"] ?></p>
-        <p>Trasfondo: <?php echo $trasfondoCompleto["nombre"] ?></p>
+        <h1>Clase: <?php echo $claseCompleta["nombre"] ?></h1>
+        <h1>Jugador: <?php echo $jugador_nombre ?></h1>
+        <h1>Raza: <?php echo $razaCompleta["nombre"] ?></h1>
+        <h1>Trasfondo: <?php echo $trasfondoCompleto["nombre"] ?></h1>
       </div>
     </div>
 		<hr>
@@ -171,6 +171,7 @@
 					</div>
 				</div>
 				<div class="ataques">
+					<h4>Ataques y conjuros</h4>
 					<?php $ataques = [];
 					 array_push($ataques, ["Ataque desarmado", "1".modificador($fuerza), "contundente"]);
 					 if ($equipamientoCompleto["id_arma"]){
@@ -183,11 +184,31 @@
 					 }
 					 echo "<table><tr><th>Acción</th><th>Daño</th><th>Tipo</th>";
 					 foreach ($ataques as $ataque) {
-						 	echo "<tr><td><strong>$ataque[0]</strong></td><td>$ataque[1]</td><td>$ataque[2]</td>";
+						 	echo "<tr><td>$ataque[0]</td><td>$ataque[1]</td><td>$ataque[2]</td>";
 					 }
 					 ?>
 				 	</table>
-					<p>Ataques y conjuros</p>
+				</div>
+				<div class="equipamiento">
+					<h4>Equipamiento</h4>
+					<table>
+						<tr>
+							<th>Nombre</th><th>Peso</th>
+						</tr>
+					<?php if ($equipamientoCompleto['id_arma']){
+						echo "<tr><td>". $armasCompletas[$equipamientoCompleto['id_arma']]["nombre"] ."</td>";
+						echo "<td>". $armasCompletas[$equipamientoCompleto['id_arma']]["peso"] ."</td></tr>";
+					}
+					if ($equipamientoCompleto['id_armaduraOEscudo']){
+						echo "<tr><td>". $armadurasCompletas[$equipamientoCompleto['id_armaduraOEscudo']]["nombre"] ."</td>";
+						echo "<td>". $armadurasCompletas[$equipamientoCompleto['id_armaduraOEscudo']]["peso"] ."</td></tr>";
+					}
+					if ($equipamientoCompleto['id_objeto']){
+						echo "<tr><td>". $objetosCompletos[$equipamientoCompleto['id_objeto']]["nombre"] ."</td>";
+						echo "<td>". $objetosCompletos[$equipamientoCompleto['id_objeto']]["peso"] ."</td></tr>";
+					}
+					?>
+				</table>
 				</div>
 			</div>
 		</div>

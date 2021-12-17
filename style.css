@@ -469,6 +469,9 @@ input[type=submit] {
 	justify-content: space-evenly;
   align-items: center;
 }
+#ficha .encabezadoFicha h1{
+	margin: 0;
+}
 #ficha .nombreDiv{
 	width:100%;
 	border-right: 1px solid var(--color6);
@@ -476,6 +479,9 @@ input[type=submit] {
 	height: max-content;
 	display: flex;
 	justify-content: space-evenly;
+}
+#ficha .nombreDiv h1{
+	margin: auto 0;
 }
 #ficha .nombreDiv img{
 	width: 100px;
@@ -505,7 +511,8 @@ input[type=submit] {
 	text-align: center;
 	margin-bottom: 2px;
 	padding: 5px 3px;
-	border: 1px solid var(--color6);
+	border-radius: 5px;
+	background-color: var(--color4);
 }
 #ficha .puntuacionHabilidades div *{
 	margin-top: 0;
@@ -515,11 +522,12 @@ input[type=submit] {
 	display: flex;
 	flex-direction: column;
 	margin: 5px;
-	width: 25%;
+	width: max-content;
 }
 #ficha .habilidades>div {
-	border: 1px solid var(--color6);
-	padding: 2.15px 3px;
+	border-radius: 5px;
+	background-color: var(--color4);
+	padding: 2.85px 3px;
 	margin: 1px;
 }
 #ficha .habilidades div *{
@@ -531,6 +539,9 @@ input[type=submit] {
 #ficha .habilidades .gris{
 	color: var(--color5);
 }
+#ficha .combate{
+	margin: auto 0;
+}
 #ficha .infoCombate{
 	display: flex;
 	flex-wrap: wrap;
@@ -538,9 +549,10 @@ input[type=submit] {
 	margin: 5px;
 	width: min-content;
 }
-#ficha .infoCombate div{
+#ficha .infoCombate .row>div{
 	text-align: center;
-	border: 1px solid var(--color6);
+	border-radius: 5px;
+	background-color: var(--color4);
 	width: 150px;
   height: 51px;
   padding: 5px;
@@ -562,29 +574,28 @@ input[type=submit] {
 #ficha .salvaciones{
 	font-size: 12px;
 }
-#ficha .ataques{
+#ficha .ataques, #ficha .equipamiento{
 	text-align: -webkit-center;
-	border: 1px solid var(--color6);
-	width: 97%;
-  margin: auto;
+  margin: 20px auto;
 }
-#ficha .ataques table{
+#ficha table{
 	margin: 0;
 }
-#ficha .ataques p{
+#ficha .ataques h4, #ficha .equipamiento h4{
 	margin: 0;
 }
-#ficha .ataques td, #ficha .ataques th{
+#ficha td, #ficha th{
 	padding: 5px;
 }
-#ficha .ataques th{
+#ficha th{
 	font-size: 20px;
-	font-weight: normal;
+	border-radius: 5px;
+	background-color: var(--color4);
 }
-#ficha .ataques td{
+#ficha td{
 	background-color: var(--color4);
 	border-radius: 5px;
 }
-#ficha .ataques table{
+#ficha table{
 	text-align: center;
 }
