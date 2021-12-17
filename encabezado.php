@@ -10,19 +10,41 @@
     <div>
       <h1 class='titulo'>Generador de fichas de D&D 5e</h1>
     </div>
+    <?php
+        if (!isset($_SESSION['usuario'])) {
+          echo "<div id='dragonInicio'><img id='gifDragon' src='imagenes/dragonAnimado.gif'/></div>";
+        }
+    ?>
     <div class="botonesEncabezado">
-      <?php
+      <?php                
         if (isset($_SESSION['usuario'])){
       ?>
-      <button type='button' class='boton botonUsuario' id='botonUsuario'>
+      <button type='button' class='boton botonUsuario' id='botonUsuario' accesskey="u">
         <?php echo $_SESSION['usuario']; ?> &nbsp<i class='fa fa-user'></i>
       </button>
       <div class="encabezadoDesplegable" id="encabezadoDesplegable">
-        <a href="#" id="cierraSesion">cierra sesión &nbsp<i class='fa fa-sign-out'></i></a>
+        <a href="#" id="cierraSesion" accesskey="s">cierra sesión &nbsp<i class='fa fa-sign-out'></i></a>
       </div>
-      <button type="button" class="boton botonCasa" id="botonCasa"><i class="fa fa-home"></i></button>
+      <button type="button" class="boton botonCasa" id="botonCasa" accesskey="h"><i class="fa fa-home"></i></button>
     <?php } else if (!$banderaInicio & !$banderaCrearCuenta){
       header('Location: '.'paginaInicio.php');
     }?>
     </div>
+  </div>
+  <div id="hilo">
+    <?php
+        $urlActual = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $paginaActual=end(explode("/",$urlActual));
+        if ($paginaActual!="paginaInicio.php") {
+          echo "<div id='linksAriadna'>";
+          if ($paginaActual=="tablero.php") {
+            echo "<a href='tablero.php' class='link'>Tablero</a>";
+          } else if ($paginaActual=="crearFicha.php") {
+            echo "<a href='tablero.php' class='link'>Tablero</a> > <a href='crearFicha.php' class='link'>Crear Ficha</a>";
+          } else if ($paginaActual=="listaFichas.php") {
+            echo "<a href='tablero.php' class='link'>Tablero</a> > <a href='listaFichas.php' class='link'>Listar Fichas</a>";
+          }
+          echo "</div>";
+        }
+      ?>
   </div>

@@ -17,8 +17,8 @@
 		<input type="hidden" name="jugador" value='<?php echo $_SESSION['usuario'] ?>'>
     <div id="crearFicha">
         <div class="div divBotonesNavegacion">
-            <button class = "btn btnAceptar" type="button"><p>Aceptar <i class="fa fa-check"></i></p></button>
-            <button class = "btn btnCancelar" type="button"><p>Cancelar <i class="fa fa-times"></i></p></button>
+            <button class = "btn btnAceptar" type="button" accesskey="a"><p>Aceptar <i class="fa fa-check"></i></p></button>
+            <button class = "btn btnCancelar" type="button" accesskey="c"><p>Cancelar <i class="fa fa-times"></i></p></button>
         </div>
     </div>
 	</form>
