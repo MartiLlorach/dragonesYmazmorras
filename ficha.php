@@ -13,6 +13,7 @@
 
   if (isset($_POST["insertar"])){
     $jugador = $_POST["jugador"];
+		$jugador_nombre = $_SESSION['usuario'];
     $nombre = $_POST["nombre"];
     $raza = $_POST["raza"];
     $clase = $_POST["clase"];
@@ -28,7 +29,7 @@
       $pdo, $nombre, $clase, $raza, $fuerza, $destreza, $constitucion, $inteligencia, $sabiduria, $carisma, $trasfondo, $idiomas);
   } else {
     $personaje = $_POST["personaje"];
-    [$nombre,$jugador,$raza,$clase,$trasfondo,$vida_maxima,$vida_currente,$avatar,$fuerza,$destreza,$constitucion,$inteligencia,$sabiduria,$carisma,$idiomas] =
+    [$nombre,$jugador,$jugador_nombre,$raza,$clase,$trasfondo,$vida_maxima,$vida_currente,$avatar,$fuerza,$destreza,$constitucion,$inteligencia,$sabiduria,$carisma,$idiomas] =
     conseguirAtributos($personaje, $pdo);
   }
   $razaCompleta = conseguirRaza($pdo, $raza);
@@ -39,6 +40,9 @@
   $armadurasCompletas = conseguirArmadurasF($pdo);
   $objetosCompletos = conseguirObjetosF($pdo);
   $equipamientoCompleto = conseguirEquipamientoClase($pdo, $clase);
+	$conjurosClase = conseguirConjurosClase($pdo, $clase);
+	$conjuros = conseguirConjuros($pdo);
+
 ?>
   <div id="ficha" class="div">
     <div class="encabezadoFicha">
@@ -53,7 +57,7 @@
       </div>
       <div class="caracteristicasDiv">
         <p>Clase: <?php echo $claseCompleta["nombre"] ?></p>
-        <p>Jugador: <?php echo $jugador ?></p>
+        <p>Jugador: <?php echo $jugador_nombre ?></p>
         <p>Raza: <?php echo $razaCompleta["nombre"] ?></p>
         <p>Trasfondo: <?php echo $trasfondoCompleto["nombre"] ?></p>
       </div>
@@ -112,51 +116,78 @@
 				<div><h4><?php echo modificador($sabiduria); ?></h4> Supervivencia <div class="gris">(Sab)</div></div>
 				<div><h4><?php echo modificador($sabiduria); ?></h4> Trato con Animales <div class="gris">(Sab)</div></div>
 			</div>
-			<div class="infoCombate">
-				<div class="CA">
-					<?php if ($equipamientoCompleto["id_armaduraOEscudo"]){
-						$armadura = $armadurasCompletas[$equipamientoCompleto["id_armaduraOEscudo"]];
+			<div class="combate">
+				<div class="infoCombate">
+					<div class="row">
+						<div class="CA">
+							<?php if ($equipamientoCompleto["id_armaduraOEscudo"]){
+								$armadura = $armadurasCompletas[$equipamientoCompleto["id_armaduraOEscudo"]];
 
-						if ($armadura["clase_de_armadura"]){
-							$ca = $armadura["clase_de_armadura"];
-						} else {
-							$ca = 10;
-						}
-						if ($armadura["clase_de_armadura_bonus"]){
-							if ($armadura["clase_de_armadura_bonus_max"]){
-								if (modificadorInt(${$armadura["clase_de_armadura_bonus"]})>$armadura["clase_de_armadura_bonus_max"]){
-									$ca += $armadura["clase_de_armadura_bonus_max"];
+								if ($armadura["clase_de_armadura"]){
+									$ca = $armadura["clase_de_armadura"];
 								} else {
-									$ca += modificadorInt(${$armadura["clase_de_armadura_bonus"]});
+									$ca = 10;
+								}
+								if ($armadura["clase_de_armadura_bonus"]){
+									if ($armadura["clase_de_armadura_bonus_max"]){
+										if (modificadorInt(${$armadura["clase_de_armadura_bonus"]})>$armadura["clase_de_armadura_bonus_max"]){
+											$ca += $armadura["clase_de_armadura_bonus_max"];
+										} else {
+											$ca += modificadorInt(${$armadura["clase_de_armadura_bonus"]});
+										}
+									} else {
+										$ca += modificadorInt(${$armadura["clase_de_armadura_bonus"]});
+									}
 								}
 							} else {
-								$ca += modificadorInt(${$armadura["clase_de_armadura_bonus"]});
+								$ca = 10 + modificadorInt($destreza);
 							}
-						}
-					} else {
-						$ca = 10 + modificadorInt($destreza);
-					}
-					echo "<h4>$ca</h4>";?>
-					<p>Clase de Armadura</p>
+							echo "<h4>$ca</h4>";?>
+							<p>Clase de Armadura</p>
+						</div>
+						<div class="iniciativa">
+							<?php echo "<h4>".modificador($destreza)."</h4>"; ?>
+							<p>Iniciativa</p>
+						</div>
+						<div class="velocidad">
+							<?php echo "<h4>". $razaCompleta["velocidad"] ."'</h4>"; ?>
+							<p>Velocidad</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="vida">
+							<?php echo "<h4>". $vida_maxima ."</h4>"; ?>
+							<p>Vida</p>
+						</div>
+						<div class="dado_de_golpe">
+							<?php echo "<h4>". $claseCompleta["dado_de_golpe"] ."</h4>"; ?>
+							<p>Dado de Golpe</p>
+						</div>
+						<div class="salvaciones">
+							<h4>Exitos: O O O</h4>
+							<h4>Fallos: O O O</h4>
+							<p>tiradas de salvavion</p>
+						</div>
+					</div>
 				</div>
-				<div class="iniciativa">
-					<?php echo "<h4>".modificador($destreza)."</h4>"; ?>
-					<p>Iniciativa</p>
-				</div>
-				<div class="velocidad">
-					<?php echo "<h4>". $razaCompleta["velocidad"] ."'</h4>"; ?>
-					<p>Velocidad</p>
-				</div>
-				<div class="vida">
-					<?php echo "<h4>". $vida_maxima ."</h4>"; ?>
-					<p>Vida</p>
-				</div>
-				<div class="dado_de_golpe">
-					<?php echo "<h4>". $claseCompleta["dado_de_golpe"] ."</h4>"; ?>
-					<p>Dado de Golpe</p>
-				</div>
-				<div class="salvaciones">
-
+				<div class="ataques">
+					<?php $ataques = [];
+					 array_push($ataques, ["Ataque desarmado", "1".modificador($fuerza), "contundente"]);
+					 if ($equipamientoCompleto["id_arma"]){
+						 $arma = $armasCompletas[$equipamientoCompleto["id_arma"]];
+						 array_push($ataques, [$arma['nombre'],$arma['daño'].modificador($fuerza), $arma["daño_tipo"]]);
+					 }
+					 if ($conjurosClase) {
+						 array_push($ataques, [$conjuros[$conjurosClase[0]]["nombre"],"",""]);
+						 array_push($ataques, [$conjuros[$conjurosClase[1]]["nombre"],"",""]);
+					 }
+					 echo "<table><tr><th>Acción</th><th>Daño</th><th>Tipo</th>";
+					 foreach ($ataques as $ataque) {
+						 	echo "<tr><td><strong>$ataque[0]</strong></td><td>$ataque[1]</td><td>$ataque[2]</td>";
+					 }
+					 ?>
+				 	</table>
+					<p>Ataques y conjuros</p>
 				</div>
 			</div>
 		</div>

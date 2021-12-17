@@ -556,7 +556,19 @@ function conseguirAtributos($id_personaje, $oBbdd){
 
   unset($query);
 
-  return [$nombre,$jugador,$raza,$clase,$trasfondo,$vida_maxima,$vida_currente,$avatar,$fuerza,$destreza,$constitucion,$inteligencia,$sabiduria,$carisma,$idiomas];
+  $query = $oBbdd->prepare("select * from usuarios where id=$jugador");
+  $query->execute();
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  }
+  $row = $query -> fetch();
+  $jugador_nombre = $row["nombre"];
+
+  unset($query);
+
+  return [$nombre,$jugador,$jugador_nombre,$raza,$clase,$trasfondo,$vida_maxima,$vida_currente,$avatar,$fuerza,$destreza,$constitucion,$inteligencia,$sabiduria,$carisma,$idiomas];
 }
 
 function conseguirRaza($oBbdd, $id_raza){
@@ -753,6 +765,52 @@ function conseguirEquipamientoClase($oBbdd, $id_clase){
     ];
 
     return $equipamientoClase;
+
+  }
+  unset($query);
+}
+
+function conseguirConjurosClase($oBbdd, $id_clase){
+  $conjuros = [];
+
+  $query = $oBbdd->prepare("select * from conjurosclase where id_clase=$id_clase");
+  $query->execute();
+
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  } else {
+    while($row = $query -> fetch()){
+      array_push($conjuros, $row["id_conjuro"]);
+    }
+
+    return $conjuros;
+
+  }
+  unset($query);
+}
+
+function conseguirConjuros($oBbdd){
+  $conjuros = [];
+
+  $query = $oBbdd->prepare("select * from conjuros");
+  $query->execute();
+
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  } else {
+    while($row = $query -> fetch()){
+      $conjuros[$row["id"]] = [
+        'nombre' => $row['nombre'],
+        'nivel' => $row['nivel'],
+        'descripcion' => $row['descripcion']
+      ];
+    }
+
+    return $conjuros;
 
   }
   unset($query);

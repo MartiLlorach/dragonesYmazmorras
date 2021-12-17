@@ -62,9 +62,12 @@ footer {
 	justify-content: space-around;
 	position: absolute;
 	bottom: 0;
-	left: 0;
-	width: 100%;
-	border-top: 2px solid var(--color4);
+	left: 50%;
+  transform: translate(-50%, 50%);
+	width: 98%;
+	border: 2px solid var(--color4);
+	border-bottom: 0;
+	border-radius: 5px;
 	height: min-content;
 	margin-top: 50px;
 }
@@ -459,6 +462,7 @@ input[type=submit] {
 	border: 2px solid var(--color5);
 	width: 70%;
 	margin: auto;
+	padding: 5px;
 }
 #ficha .encabezadoFicha{
 	display: flex;
@@ -483,7 +487,12 @@ input[type=submit] {
 }
 #ficha .cuerpoFicha{
 	display: flex;
+	justify-content: space-around;
 }
+#ficha .cuerpoFicha>div{
+
+}
+
 #ficha .puntuacionHabilidades{
 	display: flex;
 	flex-direction: column;
@@ -506,7 +515,7 @@ input[type=submit] {
 	display: flex;
 	flex-direction: column;
 	margin: 5px;
-	width: 420px;
+	width: 25%;
 }
 #ficha .habilidades>div {
 	border: 1px solid var(--color6);
@@ -527,6 +536,7 @@ input[type=submit] {
 	flex-wrap: wrap;
 	align-content: flex-start;
 	margin: 5px;
+	width: min-content;
 }
 #ficha .infoCombate div{
 	text-align: center;
@@ -540,4 +550,41 @@ input[type=submit] {
 #ficha .infoCombate div *{
 	margin: 0;
 	padding: 0;
+}
+#ficha .infoCombate .row{
+	display: flex;
+	width: max-content;
+	height: max-content;
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+#ficha .salvaciones{
+	font-size: 12px;
+}
+#ficha .ataques{
+	text-align: -webkit-center;
+	border: 1px solid var(--color6);
+	width: 97%;
+  margin: auto;
+}
+#ficha .ataques table{
+	margin: 0;
+}
+#ficha .ataques p{
+	margin: 0;
+}
+#ficha .ataques td, #ficha .ataques th{
+	padding: 5px;
+}
+#ficha .ataques th{
+	font-size: 20px;
+	font-weight: normal;
+}
+#ficha .ataques td{
+	background-color: var(--color4);
+	border-radius: 5px;
+}
+#ficha .ataques table{
+	text-align: center;
 }
