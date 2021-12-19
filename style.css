@@ -632,3 +632,11 @@ input[type=submit] {
 #ficha table{
 	text-align: center;
 }
+#botonPdf{
+	margin-top: 10px;
+}
+
+#botonPdf{
+	width: fit-content;
+	height: 37px;
+}
