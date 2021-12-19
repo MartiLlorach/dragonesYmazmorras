@@ -4,12 +4,16 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<!-- <script src="scripts/ficha.js"></script> -->
+	<script src="scripts/ficha.js"></script>
 	<title>Ficha</title>
 <?php
   include 'encabezado.php';
   include 'bbdd/bbddConexion.php';
   include 'bbdd/bbddFunciones.php';
+
+  if (isset($_POST['msg'])){
+	  echo "<script>alerta('".$_POST["msg"]."','".$_POST["tipo"]."')</script>";
+  }
 
   if (isset($_POST["insertar"])){
     $jugador = $_POST["jugador"];
@@ -48,9 +52,9 @@
     <div class="encabezadoFicha">
       <div class="nombreDiv">
 				<?php if ($avatar) {
-					echo "<img src='imagenes/avatares/$avatar' alt='avatar'>";
+					echo "<img id='avatar' src='$avatar' class='avatar' alt='avatar'>";
 				} else {
-					echo "<img src='imagenes/razas/".$razaCompleta['nombre'].".jpeg' alt='avatar'>";
+					echo "<img id='avatar' src='imagenes/razas/".$razaCompleta['nombre'].".jpeg' class='avatar' alt='avatar'>";
 				} ?>
 
         <h1><?php echo $nombre ?></h1>
@@ -212,8 +216,23 @@
 				</div>
 			</div>
 		</div>
-  </div>
+		<div id="divFormularioAvatar">
+			<?php if ($avatar) {
+						echo "<img src='$avatar' class='avatar' alt='avatar'>";
+					} else {
+						echo "<img src='imagenes/razas/".$razaCompleta['nombre'].".jpeg' class='avatar' alt='avatar'>";
+				} ?>
+			<form action="upload.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="personaje_id" value=<?php echo $personaje; ?>>
+				<p>Selecciona una imagen: <input type="file" name="fileToUpload" id="fileToUpload" required></p>
+				<p><input type="submit" value="Subir" name="submit">
+				<button id="btnSalirFormulario" type="button">Salir</button></p>
+			</form>
+		</div>
+    </div>
 
     <?php include 'pie.php' ?>
+
+	
   </body>
 </html>
