@@ -11,11 +11,10 @@
 		<h1 class=titulo>Listado de fichas</h1>
 
     <?php
-    session_start();
     $message = $_SESSION["message"];
     echo "$message";
-    	include 'bbdd/bbddConexion.php';
-      include 'bbdd/bbddFunciones.php';
+    include 'bbdd/bbddConexion.php';
+    include 'bbdd/bbddFunciones.php';
 	    
 
           /* $check = getimagesize($_FILES["imagenACargar"]["tmp_name"]);

@@ -433,7 +433,8 @@ function inicializarVariables($oBbdd){
 function insertarPersonaje(
   $oBbdd, $nombre, $clase, $raza, $fuerza, $destreza, $constitucion, $inteligencia, $sabiduria, $carisma, $trasfondo, $idiomas){
 
-  $query = $oBbdd->prepare("select id from usuarios where nombre='$_SESSION[usuario]'");
+  $query = $oBbdd->prepare("select id from usuarios where nombre=:nombre");
+  $query->bindParam(':nombre', $_SESSION["usuario"]);
   $query->execute();
   $e= $query->errorInfo();
   if ($e[0]!='00000') {
@@ -465,8 +466,8 @@ function insertarPersonaje(
 
   $query = $oBbdd->prepare("insert into personajes
   (id, nombre, jugador, raza, clase, trasfondo, vida_maxima, vida_currente, avatar)
-  VALUES(null, '$nombre', $jugador, $raza, $clase, $trasfondo, $dado, $dado, null)");
-
+  VALUES(null, :nombre, $jugador, $raza, $clase, $trasfondo, $dado, $dado, null)");
+  $query->bindParam(':nombre', $nombre);
   $query->execute();
   $e= $query->errorInfo();
   if ($e[0]!='00000') {
@@ -477,7 +478,8 @@ function insertarPersonaje(
   unset($query);
 
 
-  $query = $oBbdd->prepare("select id from personajes where nombre='$nombre' and jugador=$jugador");
+  $query = $oBbdd->prepare("select id from personajes where nombre=:nombre and jugador=$jugador");
+  $query->bindParam(':nombre', $nombre);
   $query->execute();
   $e= $query->errorInfo();
   if ($e[0]!='00000') {
@@ -844,4 +846,5 @@ function modificador($puntuacion){
 function modificadorInt($puntuacion){
   return floor(($puntuacion-10)/2);
 }
+
 ?>
