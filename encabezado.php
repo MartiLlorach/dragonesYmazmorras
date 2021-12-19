@@ -43,6 +43,10 @@
             echo "<a href='tablero.php' class='link'>Tablero</a> > <a href='crearFicha.php' class='link'>Crear Ficha</a>";
           } else if ($paginaActual=="listaFichas.php") {
             echo "<a href='tablero.php' class='link'>Tablero</a> > <a href='listaFichas.php' class='link'>Listar Fichas</a>";
+          } else if ($paginaActual=="ficha.php") {
+            echo "<a href='tablero.php' class='link'>Tablero</a> > <a href='listaFichas.php' class='link'>Listar Fichas</a> > <a href='ficha.php' class='link'>Ficha</a>";
+          } else if ($paginaActual=="testearFicha.php") {
+            echo "<a href='tablero.php' class='link'>Tablero</a> > <a href='testearFicha.php' class='link'>Lucha</a>";
           }
           echo "</div>";
         }
