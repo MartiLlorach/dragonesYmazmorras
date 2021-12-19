@@ -149,6 +149,92 @@ function printarResumenFicha($nombre, $raza, $clase, $oBbdd){
   ";
 }
 
+function conseguirFichasBis($usuario, $oBbdd){
+
+  $queryUsr = $oBbdd->prepare("select id FROM usuarios where nombre= :nombre_jugador");
+  $queryUsr->bindParam(':nombre_jugador', $usuario);
+  $queryUsr->execute();
+
+  $eUsr= $queryUsr->errorInfo();
+  if ($eUsr[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $eUsr[2]);
+  } else {
+    $rowUsr = $queryUsr->fetch();
+    $id_usuario = $rowUsr["id"];
+
+    $queryPrs = $oBbdd->prepare("select * FROM personajes where jugador= :id_jugador");
+    $queryPrs->bindParam(':id_jugador', $id_usuario);
+    $queryPrs->execute();
+
+    $ePrs= $queryPrs->errorInfo();
+    if ($ePrs[0]!='00000') {
+      echo "\nPDO::errorInfo():\n";
+      die("Error accedint a dades: " . $ePrs[2]);
+    } else {
+      $cont = 0;
+      while ($rowPrs = $queryPrs->fetch()) {
+          $raza = conseguirNombreTabla($rowPrs["raza"], "razas", $oBbdd);
+          $clase = conseguirNombreTabla($rowPrs["clase"], "clases", $oBbdd);
+          printarResumenFichaBis($rowPrs["nombre"], $raza, $clase, $oBbdd);
+          $cont++;
+      }
+      if (!$cont) {
+        echo "<div class='noFichas'><h4>No tienes fichas</h4></div>";
+      }
+    }
+
+    unset($queryUsr);
+    unset($queryPrs);
+  }
+}
+
+function printarResumenFichaBis($nombre, $raza, $clase, $oBbdd){
+
+  $query = $oBbdd->prepare("select id from usuarios where nombre='$_SESSION[usuario]'");
+  $query->execute();
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  }
+  $row = $query->fetch();
+  $jugador = $row["id"];
+
+  unset($query);
+
+
+  $query = $oBbdd->prepare("select id from personajes where nombre='$nombre' and jugador=$jugador");
+
+  $query->execute();
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+    die("Error accedint a dades: " . $e[2]);
+  }
+  $row = $query->fetch();
+  $personaje_id = $row["id"];
+
+  unset($query);
+
+  $src ="";
+  $src = 'imagenes/razas/'.$raza.'.jpeg';
+
+  echo "
+  <div class='resumenFicha'>
+    <img class='imgRaza' src=$src></img>
+    <p>$nombre</p>
+    <p>$raza</p>
+    <p>$clase</p>
+    <div class='resumenBotones'>
+      <form method=post>
+      <button class='verFicha' name='personaje' value=$personaje_id >Seleccionar</button>
+      </form>
+    </div>
+  </div>
+  ";
+}
+
 function conseguirNombreTabla($id, $tabla, $oBbdd){
   $query = $oBbdd->prepare("select * FROM $tabla where id= :id");
   $query->bindParam(':id', $id);

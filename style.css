@@ -203,8 +203,9 @@ footer a{
 	position: fixed;
 	width: 20vw;
 	height: 20vh;
-	top: 25vh;
-	right: 42vw;
+	top: 40%;
+	left: 50%;
+  transform: translate(-50%, -50%);
 	border: solid black 2px;
 }
 
@@ -362,7 +363,7 @@ input[type=submit] {
 }
 
 /* ESTILOS LISTA FICHAS */
-#listaFichas .resumenFicha{
+.resumenFicha{
 	display: flex;
 	width: min-content;
 	margin: 10px auto;
@@ -371,7 +372,7 @@ input[type=submit] {
 	align-items: center;
 }
 
-#listaFichas .noFichas{
+.noFichas{
 	width: max-content;
 	margin: 10px auto;
 	background: var(--color4);
@@ -380,16 +381,16 @@ input[type=submit] {
 	padding: 5px 20px;
 }
 
-#listaFichas .resumenBotones{
+.resumenBotones{
 	display: flex;
 	flex-direction: column;
 }
 
-#listaFichas .resumenFicha button{
+.resumenFicha button{
 	margin: 2px 5px;
 }
 
-#listaFichas .resumenFicha .verFicha{
+.resumenFicha .verFicha{
 	background-color: rgb(0, 100, 0);
 	color: var(--color6);
 }
@@ -406,12 +407,12 @@ input[type=submit] {
 	background-color: rgb(180, 0, 0);
 }
 
-#listaFichas .resumenFicha .imgRaza{
+.resumenFicha .imgRaza{
 	width: auto;
 	height: 50px;
 	margin-left: 10px;
 }
-#listaFichas .resumenFicha p{
+.resumenFicha p{
 	padding: 10px;
 }
 #listaFichas{
@@ -631,4 +632,30 @@ input[type=submit] {
 }
 #ficha table{
 	text-align: center;
+}
+#menuTestear{
+	display: flex;
+	background-color: var(--color3);
+	border: 2px solid var(--color4);
+	justify-content: space-evenly;
+  align-items: center;
+	width: 90%;
+	margin: 0 auto;
+}
+#menuTestear img{
+	height: 100px;
+	width: 100px;
+}
+#menuTestear>div{
+	display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+	width: 100%;
+}
+#menuTestear .botones{
+	margin: 0;
+}
+#menuTestear button{
+	margin: 5px;
 }
