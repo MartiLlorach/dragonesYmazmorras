@@ -13,7 +13,7 @@
 
   if (isset($_POST["insertar"])){
     $jugador = $_POST["jugador"];
-		$jugador_nombre = $_SESSION['usuario'];
+	$jugador_nombre = $_SESSION['usuario'];
     $nombre = $_POST["nombre"];
     $raza = $_POST["raza"];
     $clase = $_POST["clase"];
@@ -29,9 +29,9 @@
       $pdo, $nombre, $clase, $raza, $fuerza, $destreza, $constitucion, $inteligencia, $sabiduria, $carisma, $trasfondo, $idiomas);
   } else {
     $personaje = $_POST["personaje"];
-    [$nombre,$jugador,$jugador_nombre,$raza,$clase,$trasfondo,$vida_maxima,$vida_currente,$avatar,$fuerza,$destreza,$constitucion,$inteligencia,$sabiduria,$carisma,$idiomas] =
-    conseguirAtributos($personaje, $pdo);
   }
+  [$nombre,$jugador,$jugador_nombre,$raza,$clase,$trasfondo,$vida_maxima,$vida_currente,$avatar,$fuerza,$destreza,$constitucion,$inteligencia,$sabiduria,$carisma,$idiomas] =
+    conseguirAtributos($personaje, $pdo);
   $razaCompleta = conseguirRaza($pdo, $raza);
   $claseCompleta = conseguirClase($pdo, $clase);
   $trasfondoCompleto = conseguirTrasfondo($pdo, $trasfondo);
@@ -40,8 +40,8 @@
   $armadurasCompletas = conseguirArmadurasF($pdo);
   $objetosCompletos = conseguirObjetosF($pdo);
   $equipamientoCompleto = conseguirEquipamientoClase($pdo, $clase);
-	$conjurosClase = conseguirConjurosClase($pdo, $clase);
-	$conjuros = conseguirConjuros($pdo);
+  $conjurosClase = conseguirConjurosClase($pdo, $clase);
+  $conjuros = conseguirConjuros($pdo);
 
 ?>
   <div id="ficha" class="div">
