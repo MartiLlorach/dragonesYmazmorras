@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="scripts/ficha.js"></script>
 	<!-- <script src="scripts/ficha.js"></script> -->
 	<title>Ficha</title>
 <?php
@@ -27,6 +28,7 @@
     $idiomas = $_POST["idiomas[]"];
     $personaje = insertarPersonaje(
       $pdo, $nombre, $clase, $raza, $fuerza, $destreza, $constitucion, $inteligencia, $sabiduria, $carisma, $trasfondo, $idiomas);
+    // funcion conseguir ID personaje
   } else {
     $personaje = $_POST["personaje"];
     [$nombre,$jugador,$jugador_nombre,$raza,$clase,$trasfondo,$vida_maxima,$vida_currente,$avatar,$fuerza,$destreza,$constitucion,$inteligencia,$sabiduria,$carisma,$idiomas] =
@@ -48,9 +50,15 @@
     <div class="encabezadoFicha">
       <div class="nombreDiv">
 				<?php if ($avatar) {
-					echo "<img src='imagenes/avatares/$avatar' alt='avatar'>";
+					session_start(); // Por si no está iniciada aún.
+					function importarImagen() {
+						importarImagenAlert();
+						$_SESSION['idPersonajeAvatar'] = $personaje;
+					}
+					echo "<img src='imagenes/avatares/$avatar' alt='avatar'  onclick='importarImagen()'>";
+					// Esto no va porque no ejecuta la función PHP
 				} else {
-					echo "<img src='imagenes/razas/".$razaCompleta['nombre'].".jpeg' alt='avatar'>";
+					echo "<img src='imagenes/razas/".$razaCompleta['nombre'].".jpeg' alt='avatar' onclick='importarImagen()'>";
 				} ?>
 
         <h1><?php echo $nombre ?></h1>

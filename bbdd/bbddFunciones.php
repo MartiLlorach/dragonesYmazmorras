@@ -138,7 +138,7 @@ function printarResumenFicha($nombre, $raza, $clase, $oBbdd, $avatar){
 
   echo "
   <div class='resumenFicha'>
-    <img class='imgRaza' src=$src onclick='importarImagen($id)'/>
+    <img class='imgRaza' src=$src onclick='importarImagenAlert()'/>
     <p>$nombre</p>
     <p>$raza</p>
     <p>$clase</p>
@@ -290,9 +290,22 @@ function conseguirIdiomas($oBbdd){
   unset($query);
 }
 
-function subirAvatar($urlAvatar, $oBbdd) {
-  $query = $oBbdd->prepare("UPDATE personajes SET avatar = '$urlAvatar'");
-  $query->execute();
+
+function subirAvatar($urlAvatar, $checkAvatar, $oBbdd) {
+  session_start(); // Por si no está iniciada aún.
+  echo "<br> Temporary url: $urlAvatar";
+  echo "<br> Check avatar image file:$checkAvatar";
+  $check = getimagesize($checkAvatar);
+  if($check !== false){
+    $image = $urlAvatar;
+    $imgContent = addslashes(file_get_contents($image));
+    // $idPersonajeAvatar = $_SESSION['idPersonajeAvatar']; FALTA EL WHERE en la query
+    echo "<br>Image Content: $imgContent";
+    $query = $oBbdd->prepare("UPDATE personajes SET avatar = '$imgContent'");
+    $query->execute();
+  }else{
+            echo "Please select an image file to upload.";
+        }
 }
 function conseguirArmas($oBbdd){
   $armas = [];

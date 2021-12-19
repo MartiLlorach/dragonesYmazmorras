@@ -23,7 +23,8 @@
 			$dest_path = $uploadFileDir . $newFileName;
 			if(move_uploaded_file($fileTmpPath, $dest_path)) {
 			  $_SESSION["message"] ='File is successfully uploaded.';
-			  $_SESSION["urlAvatar"]=$dest_path;
+			  $_SESSION['checkUrlAvatar']=$dest_path;
+			  $_SESSION["urlAvatar"]=$fileTmpPath;
 			} else{
 			  $_SESSION["message"] = 'There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.';
 			}
