@@ -144,9 +144,9 @@ function printarResumenFicha($nombre, $raza, $clase, $avatar, $oBbdd){
     <p>$clase</p>
     <div class='resumenBotones'>
       <form method=post action=ficha.php>
-      <button class='verFicha' name='personaje' value=$personaje_id ><i class='fa fa-eye'></i></button>
+      <button class='verFicha' name='personaje' value=$personaje_id accesskey='v'><i class='fa fa-eye'></i></button>
       </form>
-      <button class='eliminarFicha'><i class='fa fa-trash'></i></button>
+      <button class='eliminarFicha' accesskey='e'><i class='fa fa-trash'></i></button>
     </div>
   </div>
   ";

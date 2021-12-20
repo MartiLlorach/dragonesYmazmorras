@@ -222,7 +222,7 @@
 			</div>
 
 		</div>
-		<a href="imprimirFicha.php" target="_blank"><button type="button" id="botonPdf" class="boton">Imprimir ficha en pdf</button></a>
+		<a href="imprimirFicha.php" target="_blank"><button type="button" id="botonPdf" class="boton" accesskey='i'>Imprimir ficha en pdf</button></a>
 		<div id="divFormularioAvatar">
 			<?php if ($avatar) {
 						echo "<img src='$avatar' class='avatar' alt='avatar'>";
