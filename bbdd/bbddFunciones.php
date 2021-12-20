@@ -89,7 +89,7 @@ function conseguirFichas($usuario, $oBbdd){
       while ($rowPrs = $queryPrs->fetch()) {
           $raza = conseguirNombreTabla($rowPrs["raza"], "razas", $oBbdd);
           $clase = conseguirNombreTabla($rowPrs["clase"], "clases", $oBbdd);
-          printarResumenFicha($rowPrs["nombre"], $raza, $clase, $oBbdd);
+          printarResumenFicha($rowPrs["nombre"], $raza, $clase, $rowPrs["avatar"], $oBbdd);
           $cont++;
       }
       if (!$cont) {
@@ -102,7 +102,7 @@ function conseguirFichas($usuario, $oBbdd){
   }
 }
 
-function printarResumenFicha($nombre, $raza, $clase, $oBbdd){
+function printarResumenFicha($nombre, $raza, $clase, $avatar, $oBbdd){
 
   $query = $oBbdd->prepare("select id from usuarios where nombre='$_SESSION[usuario]'");
   $query->execute();
@@ -130,8 +130,11 @@ function printarResumenFicha($nombre, $raza, $clase, $oBbdd){
 
   unset($query);
 
-  $src ="";
-  $src = 'imagenes/razas/'.$raza.'.jpeg';
+  if ($avatar) {
+    $src = $avatar;
+  } else {
+    $src = 'imagenes/razas/'.$raza.'.jpeg';
+  }
 
   echo "
   <div class='resumenFicha'>
@@ -176,7 +179,7 @@ function conseguirFichasBis($usuario, $oBbdd){
       while ($rowPrs = $queryPrs->fetch()) {
           $raza = conseguirNombreTabla($rowPrs["raza"], "razas", $oBbdd);
           $clase = conseguirNombreTabla($rowPrs["clase"], "clases", $oBbdd);
-          printarResumenFichaBis($rowPrs["nombre"], $raza, $clase, $oBbdd);
+          printarResumenFichaBis($rowPrs["nombre"], $raza, $clase, $rowPrs["avatar"], $oBbdd);
           $cont++;
       }
       if (!$cont) {
@@ -189,7 +192,7 @@ function conseguirFichasBis($usuario, $oBbdd){
   }
 }
 
-function printarResumenFichaBis($nombre, $raza, $clase, $oBbdd){
+function printarResumenFichaBis($nombre, $raza, $clase, $avatar, $oBbdd){
 
   $query = $oBbdd->prepare("select id from usuarios where nombre='$_SESSION[usuario]'");
   $query->execute();
@@ -217,8 +220,11 @@ function printarResumenFichaBis($nombre, $raza, $clase, $oBbdd){
 
   unset($query);
 
-  $src ="";
-  $src = 'imagenes/razas/'.$raza.'.jpeg';
+  if ($avatar) {
+    $src = $avatar;
+  } else {
+    $src = 'imagenes/razas/'.$raza.'.jpeg';
+  }
 
   echo "
   <div class='resumenFicha'>
@@ -909,5 +915,37 @@ function modificador($puntuacion){
 }
 function modificadorInt($puntuacion){
   return floor(($puntuacion-10)/2);
+}
+
+function subirAvatar($id_personaje, $camino, $oBbdd){
+  $query = $oBbdd->prepare("select avatar from personajes where id=$id_personaje");
+  $query->execute();
+  $e= $query->errorInfo();
+  if ($e[0]!='00000') {
+    echo "\nPDO::errorInfo():\n";
+  }
+  $row = $query -> fetch();
+  if ($row["avatar"]){
+    unlink($row["avatar"]);
+  }
+
+  $query = $oBbdd->prepare("UPDATE personajes SET avatar=:camino where id=$id_personaje");
+  $query->bindParam(':camino', $camino);
+  $query->execute();
+
+  $e= $query->errorInfo();
+  echo "<form action='ficha.php' method='post' id='resultadoAvatar'> ";
+  if ($e[0]!='00000') {
+    echo "<input type='hidden' name='msg' value='Ha habido un error en la subida, comprueba que has subido una imagen .jpg o .jpeg o .png o .gif y de menos de 10Mb'>";
+    echo "<input type='hidden' name='tipo' value='mal'>";
+  } else {
+    echo "<input type='hidden' name='msg' value='Se ha subido el avatar correctamente'>";
+    echo "<input type='hidden' name='tipo' value='bien'>";
+  }
+  echo "<input type='hidden' name='personaje' value=$id_personaje></form>";
+  echo "<script>document.getElementById('resultadoAvatar').submit();</script>";
+
+
+  unset($query);
 }
 ?>
