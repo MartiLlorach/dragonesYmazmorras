@@ -142,7 +142,6 @@ footer a{
 #dragonInicio {
 	position: absolute;
 	left:  40%;
-	/* transition: left 93% 10s; */
   animation: movimientoDerecha 20s infinite;
   animation-timing-function: ease-in-out;
   animation-direction: normal;
