@@ -38,11 +38,15 @@
         if ($paginaActual!="paginaInicio.php") {
           echo "<div id='linksAriadna'>";
           if ($paginaActual=="tablero.php") {
-            echo "<a href='tablero.php' class='link'>Tablero</a>";
+            echo "Tablero";
           } else if ($paginaActual=="crearFicha.php") {
-            echo "<a href='tablero.php' class='link'>Tablero</a> > <a href='crearFicha.php' class='link'>Crear Ficha</a>";
+            echo "<a href='tablero.php' class='link'>Tablero</a> > Crear Ficha";
           } else if ($paginaActual=="listaFichas.php") {
-            echo "<a href='tablero.php' class='link'>Tablero</a> > <a href='listaFichas.php' class='link'>Listar Fichas</a>";
+            echo "<a href='tablero.php' class='link'>Tablero</a> > Listado de Fichas";
+          } else if ($paginaActual=="ficha.php") {
+            echo "<a href='tablero.php' class='link'>Tablero</a> > <a href='listaFichas.php' class='link'>Listado de Fichas</a> > Ficha";
+          } else if ($paginaActual=="testearFicha.php") {
+            echo "<a href='tablero.php' class='link'>Tablero</a> > Lucha";
           }
           echo "</div>";
         }
