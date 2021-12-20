@@ -640,6 +640,17 @@ input[type=submit] {
 #ficha table{
 	text-align: center;
 }
+
+#botonPdf{
+	margin-top: 10px;
+	margin-left: 85%;
+  margin-bottom: 10px;
+}
+
+#botonPdf{
+	width: fit-content;
+	height: 37px;
+
 #menuTestear{
 	display: flex;
 	background-color: var(--color3);

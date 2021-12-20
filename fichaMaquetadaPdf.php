@@ -1,14 +1,12 @@
-<!DOCTYPE html>
 <html>
-<head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!-- <script src="scripts/ficha.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="http://dndcreator.tk/estilos.css">
 	<title>Ficha</title>
 <?php
-  include 'encabezado.php';
-  include 'bbdd/bbddConexion.php';
+include 'bbdd/bbddConexion.php';
   include 'bbdd/bbddFunciones.php';
 
   if (isset($_POST["insertar"])){
@@ -28,11 +26,10 @@
     $personaje = insertarPersonaje(
       $pdo, $nombre, $clase, $raza, $fuerza, $destreza, $constitucion, $inteligencia, $sabiduria, $carisma, $trasfondo, $idiomas);
   } else {
-    $personaje = $_POST["personaje"];
-
-    /* Creamos una sesion de personaje para poder saber que personaje ha de maquetar la pagina que se encarga de imprimir la ficha maquetada*/
-    session_start();
-    $_SESSION['imprimirPdf'] = $_POST['personaje'];
+  	
+  	/* Sesion que viene de la pagina ficha para saber que personaje ha de maquetar la pagina*/
+  	session_start();
+    $personaje = $_SESSION['imprimirPdf'];
 
     [$nombre,$jugador,$jugador_nombre,$raza,$clase,$trasfondo,$vida_maxima,$vida_currente,$avatar,$fuerza,$destreza,$constitucion,$inteligencia,$sabiduria,$carisma,$idiomas] =
     conseguirAtributos($personaje, $pdo);
@@ -52,12 +49,7 @@
   <div id="ficha" class="div">
     <div class="encabezadoFicha">
       <div class="nombreDiv">
-				<?php if ($avatar) {
-					echo "<img src='imagenes/avatares/$avatar' alt='avatar'>";
-				} else {
-					echo "<img src='imagenes/razas/".$razaCompleta['nombre'].".jpeg' alt='avatar'>";
-				} ?>
-
+				
         <h1><?php echo $nombre ?></h1>
       </div>
       <div class="caracteristicasDiv">
@@ -216,10 +208,11 @@
 				</table>
 				</div>
 			</div>
-
 		</div>
-				<a href="imprimirFicha.php" target="_blank"><button type="button" id="botonPdf" class="boton">Imprimir ficha en pdf</button></a>
+		
   </div>
-    <?php include 'pie.php' ?>
+	  
+
   </body>
+
 </html>
