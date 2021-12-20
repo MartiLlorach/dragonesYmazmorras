@@ -5,7 +5,7 @@ include "bbdd/bbddConexion.php";
 include "bbdd/bbddFunciones.php";
 
 $id_personaje = $_POST["personaje_id"];
-$target_dir = "imagenes/avatares/";
+$target_dir = "var/www/dnd/dragonesYmazmorras/imagenes/avatares/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
