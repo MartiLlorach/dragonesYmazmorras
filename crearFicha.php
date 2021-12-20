@@ -12,7 +12,7 @@
     include 'bbdd/bbddFunciones.php';
     inicializarVariables($pdo);
 ?>
-	<form method="post" id="formFicha" action="ficha.php">
+	<form method="post" id="formFicha" action="ficha.php" onkeydown="return event.key != 'Enter';">
 		<input type="hidden" name="insertar" value="1">
 		<input type="hidden" name="jugador" value='<?php echo $_SESSION['usuario'] ?>'>
     <div id="crearFicha">
