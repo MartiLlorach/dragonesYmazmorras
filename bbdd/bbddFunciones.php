@@ -910,7 +910,7 @@ function conseguirConjuros($oBbdd){
 
 function modificador($puntuacion){
   $mod = floor(($puntuacion-10)/2);
-  if ($mod>0) return "+".$mod;
+  if ($mod>=0) return "+".$mod;
   else return $mod;
 }
 function modificadorInt($puntuacion){
