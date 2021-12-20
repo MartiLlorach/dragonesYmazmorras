@@ -222,6 +222,7 @@
 			</div>
 
 		</div>
+		<a href="imprimirFicha.php" target="_blank"><button type="button" id="botonPdf" class="boton">Imprimir ficha en pdf</button></a>
 		<div id="divFormularioAvatar">
 			<?php if ($avatar) {
 						echo "<img src='$avatar' class='avatar' alt='avatar'>";
@@ -236,11 +237,10 @@
 			</form>
 		</div>
     </div>
-				<a href="imprimirFicha.php" target="_blank"><button type="button" id="botonPdf" class="boton">Imprimir ficha en pdf</button></a>
   </div>
 
     <?php include 'pie.php' ?>
 
-	
+
   </body>
 </html>
