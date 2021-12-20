@@ -25,8 +25,8 @@
 			<input type="password" id="nuevaContrasena2" name="nuevaContrasena2" placeholder="Contraseña" maxlength="10" required><br>
 		</div>
 		<div id="botonesFormulario">
-			<button id="salir" onclick="window.location='paginaInicio.php'">Salir</button>
-			<input type="submit" value="Registrarte">
+			<button id="salir" onclick="window.location='paginaInicio.php'" accesskey="s">Salir</button>
+			<input type="submit" value="Registrarte" accesskey="r">
 		</div>
 	</form>
 </div>
