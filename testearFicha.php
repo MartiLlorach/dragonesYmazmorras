@@ -24,12 +24,12 @@
 				<personaje fuerza=$fuerza destreza=$destreza constitucion=$constitucion inteligencia=$inteligencia sabiduria=$sabiduria carisma=$carisma hidden>
 			</div>
 			<div class='botones'>
-				<button type='button' id='btnfuerza'>Fuerza</button>
-				<button type='button' id='btndestreza'>Destreza</button>
-				<button type='button' id='btnconstitucion'>Constitución</button>
-				<button type='button' id='btninteligencia'>Inteligencia</button>
-				<button type='button' id='btnsabiduria'>Sabiduría</button>
-				<button type='button' id='btncarisma'>Carisma</button>
+				<button type='button' id='btnfuerza' accesskey='f'>Fuerza</button>
+				<button type='button' id='btndestreza' accesskey='d'>Destreza</button>
+				<button type='button' id='btnconstitucion' accesskey='c'>Constitución</button>
+				<button type='button' id='btninteligencia' accesskey='i'>Inteligencia</button>
+				<button type='button' id='btnsabiduria' accesskey='b'>Sabiduría</button>
+				<button type='button' id='btncarisma' accesskey='r'>Carisma</button>
 			</div>
 			<div class='fichaEnfrentada'>
 				<img src='imagenes/razas/Dummy.jpg' alt=avatar>
