@@ -152,15 +152,17 @@ footer a{
 #dragonInicio {
 	position: absolute;
 	left:  40%;
-	transition: left 93% 10s;
-  animation: movimientoDerecha 10s infinite;
+  animation: movimientoDerecha 20s infinite;
   animation-timing-function: ease-in-out;
-  animation-direction: alternate;
+  animation-direction: normal;
 }
 
 @keyframes movimientoDerecha {
   0% {left: 40%;}
-  100% {left: 93%;}
+  48% {transform: rotateY(0deg);}
+  50% {left: 93%; transform: rotateY(-180deg);}
+  98% {transform: rotateY(-180deg);}
+  100% {left: 40%;} /*transform: rotateY(0deg);}*/
 }
 
 #botonUsuario{
