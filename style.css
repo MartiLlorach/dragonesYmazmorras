@@ -31,10 +31,17 @@ h1, h2, h3{
 	font-family: 'Eczar', serif;
 }
 
-button:hover, input[type=submit]:hover{
+button:hover, input[type=submit]:hover, #ficha #avatar{
 	background-color: #ddd;
 	color: var(--color2);
 	cursor: pointer;
+	animation-name: sombreado;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
+@keyframes sombreado {
+	from {box-shadow: 0;}
+	to {box-shadow: 0px 8px 15px rgb(0, 0, 0, 0.5);}
 }
 
 .link {
@@ -62,9 +69,12 @@ footer {
 	justify-content: space-around;
 	position: absolute;
 	bottom: 0;
-	left: 0;
-	width: 100%;
-	border-top: 2px solid var(--color4);
+	left: 50%;
+  transform: translate(-50%, 50%);
+	width: 98%;
+	border: 2px solid var(--color4);
+	border-bottom: 0;
+	border-radius: 5px;
 	height: min-content;
 	margin-top: 50px;
 }
@@ -106,7 +116,7 @@ footer a{
   	justify-content: space-between;
   	align-items: baseline;
 	padding: 0 10px;
-	margin: 8px 8px 20px;
+	margin: 8px 8px 10px;
 	border-radius: 5px;
 	border: 2px solid var(--color4);
 	z-index: 1000;
@@ -118,6 +128,41 @@ footer a{
 	margin: 10px;
 	padding: 5px;
 	align-items: center;
+}
+
+#hilo {
+	display:  flex;
+	align-items: flex-start;
+	padding-left: 15px;
+}
+
+#linksAriadna {
+	background-color: var(--color5);
+	padding: 7px;
+	border-radius: 5px;
+	border: 2px solid var(--color4);
+}
+
+#gifDragon {
+	align-content: center;
+	max-width: 70px;
+	max-height: 70px;
+}
+
+#dragonInicio {
+	position: absolute;
+	left:  40%;
+  animation: movimientoDerecha 20s infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: normal;
+}
+
+@keyframes movimientoDerecha {
+  0% {left: 40%;}
+  48% {transform: rotateY(0deg);}
+  50% {left: 93%; transform: rotateY(-180deg);}
+  98% {transform: rotateY(-180deg);}
+  100% {left: 40%;} /*transform: rotateY(0deg);}*/
 }
 
 #botonUsuario{
@@ -167,9 +212,11 @@ footer a{
 	position: fixed;
 	width: 20vw;
 	height: 20vh;
-	top: 25vh;
-	right: 42vw;
+	top: 40%;
+	left: 50%;
+  transform: translate(-50%, -50%);
 	border: solid black 2px;
+	z-index: 100000;
 }
 
 .alerta.mal {background-color: red;}
@@ -326,7 +373,7 @@ input[type=submit] {
 }
 
 /* ESTILOS LISTA FICHAS */
-#listaFichas .resumenFicha{
+.resumenFicha{
 	display: flex;
 	width: min-content;
 	margin: 10px auto;
@@ -335,7 +382,7 @@ input[type=submit] {
 	align-items: center;
 }
 
-#listaFichas .noFichas{
+.noFichas{
 	width: max-content;
 	margin: 10px auto;
 	background: var(--color4);
@@ -344,16 +391,16 @@ input[type=submit] {
 	padding: 5px 20px;
 }
 
-#listaFichas .resumenBotones{
+.resumenBotones{
 	display: flex;
 	flex-direction: column;
 }
 
-#listaFichas .resumenFicha button{
+.resumenFicha button{
 	margin: 2px 5px;
 }
 
-#listaFichas .resumenFicha .verFicha{
+.resumenFicha .verFicha{
 	background-color: rgb(0, 100, 0);
 	color: var(--color6);
 }
@@ -370,12 +417,12 @@ input[type=submit] {
 	background-color: rgb(180, 0, 0);
 }
 
-#listaFichas .resumenFicha .imgRaza{
+.resumenFicha .imgRaza{
 	width: auto;
 	height: 50px;
 	margin-left: 10px;
 }
-#listaFichas .resumenFicha p{
+.resumenFicha p{
 	padding: 10px;
 }
 #listaFichas{
@@ -450,4 +497,207 @@ input[type=submit] {
 }
 #crearFicha #contenedorHabilidades .sctHabilidad{
 	width: 5vw;
+}
+
+
+/* ESTILOS VISUALIZACION FICHA */
+#ficha{
+	background-color: var(--color3);
+	border: 2px solid var(--color5);
+	width: 70%;
+	margin: auto;
+	padding: 5px;
+}
+#ficha .encabezadoFicha{
+	display: flex;
+	justify-content: space-evenly;
+  align-items: center;
+}
+#ficha .encabezadoFicha h1{
+	margin: 0;
+}
+#ficha .nombreDiv{
+	width:100%;
+	border-right: 1px solid var(--color6);
+	text-align: center;
+	height: max-content;
+	display: flex;
+	justify-content: space-evenly;
+}
+#ficha .nombreDiv h1{
+	margin: auto 0;
+}
+#ficha .nombreDiv img{
+	width: 100px;
+	height: 100px;
+}
+#ficha .caracteristicasDiv{
+	width:100%;
+	text-align: center;
+}
+#ficha .cuerpoFicha{
+	display: flex;
+	justify-content: space-around;
+}
+#ficha .cuerpoFicha>div{
+
+}
+
+#ficha .puntuacionHabilidades{
+	display: flex;
+	flex-direction: column;
+	margin: 5px;
+	width: min-content;
+}
+#ficha .puntuacionHabilidades div{
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	margin-bottom: 2px;
+	padding: 5px 3px;
+	border-radius: 5px;
+	background-color: var(--color4);
+}
+#ficha .puntuacionHabilidades div *{
+	margin-top: 0;
+	margin-bottom: 0;
+}
+#ficha .habilidades{
+	display: flex;
+	flex-direction: column;
+	margin: 5px;
+	width: max-content;
+}
+#ficha .habilidades>div {
+	border-radius: 5px;
+	background-color: var(--color4);
+	padding: 2.85px 3px;
+	margin: 1px;
+}
+#ficha .habilidades div *{
+	display: inline;
+}
+#ficha .habilidades div h4{
+	width: 20px;
+}
+#ficha .habilidades .gris{
+	color: var(--color5);
+}
+#ficha .combate{
+	margin: auto 0;
+}
+#ficha .infoCombate{
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	margin: 5px;
+	width: min-content;
+}
+#ficha .infoCombate .row>div{
+	text-align: center;
+	border-radius: 5px;
+	background-color: var(--color4);
+	width: 150px;
+  height: 51px;
+  padding: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+#ficha .infoCombate div *{
+	margin: 0;
+	padding: 0;
+}
+#ficha .infoCombate .row{
+	display: flex;
+	width: max-content;
+	height: max-content;
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+#ficha .salvaciones{
+	font-size: 12px;
+}
+#ficha .ataques, #ficha .equipamiento{
+	text-align: -webkit-center;
+  margin: 20px auto;
+}
+#ficha table{
+	margin: 0;
+}
+#ficha .ataques h4, #ficha .equipamiento h4{
+	margin: 0;
+}
+#ficha td, #ficha th{
+	padding: 5px;
+}
+#ficha th{
+	font-size: 20px;
+	border-radius: 5px;
+	background-color: var(--color4);
+}
+#ficha td{
+	background-color: var(--color4);
+	border-radius: 5px;
+}
+#ficha table{
+	text-align: center;
+}
+
+#botonPdf{
+	margin-top: 10px;
+	margin-left: 85%;
+  margin-bottom: 10px;
+}
+
+#botonPdf{
+	width: fit-content;
+	height: 37px;
+}
+#menuTestear{
+	display: flex;
+	background-color: var(--color3);
+	border: 2px solid var(--color4);
+	justify-content: space-evenly;
+    align-items: center;
+	width: 90%;
+	margin: 0 auto;
+}
+#menuTestear img{
+	height: 100px;
+	width: 100px;
+}
+#menuTestear>div{
+	display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+	width: 100%;
+}
+#menuTestear .botones{
+	margin: 0;
+}
+#menuTestear button{
+	margin: 5px;
+}
+
+#divFormularioAvatar{
+	position: fixed;
+	top: 20%;
+	left: 50%;
+	transform: translate(-50%, 50%);
+	background-color: var(--color4);
+	border: 5px solid var(--color5);
+	border-radius: 10px;
+	padding: 20px;
+	display: none;
+}
+
+#divFormularioAvatar #btnSalirFormulario {
+	font-size: 20px;
+}
+
+#ficha .avatar{
+	width: 100px;
+	height: 100px;
 }

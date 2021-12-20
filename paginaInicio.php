@@ -28,10 +28,10 @@
 				<h2>Iniciar sesión</h2>
 				<input type="text" id="usuario" name="usuario" placeholder="Usuario" maxlength="10" required>
 				<input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" maxlength="10" required>
-				<input type="submit" value="Entrar">
+				<input type="submit" value="Entrar" accesskey="e">
 				<a class="link"><u>¿Has olvidado la contraseña?</u></a>
 			</form>
-			<button id="crearCuenta" onclick="window.location='crearCuenta.php'">Crear una cuenta nueva</button>
+			<button id="crearCuenta" onclick="window.location='crearCuenta.php'" accesskey="c">Crear una cuenta nueva</button>
 			<?php
 				include 'bbdd/bbddConexion.php';
 				include 'bbdd/bbddFunciones.php';

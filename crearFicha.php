@@ -10,17 +10,18 @@
     include 'encabezado.php';
     include 'bbdd/bbddConexion.php';
     include 'bbdd/bbddFunciones.php';
-    conseguirRazas($pdo);
-    conseguirClases($pdo);
-    conseguirTrasfondos($pdo);
-    conseguirIdiomas($pdo);
+    inicializarVariables($pdo);
 ?>
+	<form method="post" id="formFicha" action="ficha.php" onkeydown="return event.key != 'Enter';">
+		<input type="hidden" name="insertar" value="1">
+		<input type="hidden" name="jugador" value='<?php echo $_SESSION['usuario'] ?>'>
     <div id="crearFicha">
         <div class="div divBotonesNavegacion">
-            <button class = "btn btnAceptar"><p>Aceptar <i class="fa fa-check"></i></p></button>
-            <button class = "btn btnCancelar"><p>Cancelar <i class="fa fa-times"></i></p></button>
+            <button class = "btn btnAceptar" type="button" accesskey="a"><p>Aceptar <i class="fa fa-check"></i></p></button>
+            <button class = "btn btnCancelar" type="button" accesskey="c"><p>Cancelar <i class="fa fa-times"></i></p></button>
         </div>
     </div>
+	</form>
 		<?php include 'pie.php' ?>
   </body>
 </html>
