@@ -33,7 +33,7 @@
     /* Creamos una sesion de personaje para poder saber que personaje ha de maquetar la pagina que se encarga de imprimir la ficha maquetada*/
     session_start();
     $_SESSION['imprimirPdf'] = $_POST['personaje'];
-    
+
     [$nombre,$jugador,$jugador_nombre,$raza,$clase,$trasfondo,$vida_maxima,$vida_currente,$avatar,$fuerza,$destreza,$constitucion,$inteligencia,$sabiduria,$carisma,$idiomas] =
     conseguirAtributos($personaje, $pdo);
   }
